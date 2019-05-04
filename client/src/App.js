@@ -12,7 +12,7 @@ class App extends Component {
         <div className="descriptionBox">
           <p>A build your own scavenger hunt app</p>
         </div>
-        <button className="loginButton">Login</button>
+        <button className="loginButton"><a href="/createplay">Login</a></button>
       </div>
     );
   }

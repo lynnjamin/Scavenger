@@ -6,10 +6,15 @@ body{
   text-align: center;
   background-color: #737c67;
   height:20em;
-  padding-top: 10%;
-  
+}
+header{
+  padding-top: 50px;
 }
 
+.logout{
+  float:right;
+  color:#eeeeee;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
