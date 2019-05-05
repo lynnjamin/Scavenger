@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import Auth from './Auth/Auth.js';
 import logo from "./logo.svg";
 import "./App.css";
+
+
+const auth = new Auth();
+auth.login();
 
 class App extends Component {
   render() {
