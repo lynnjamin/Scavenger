@@ -7,6 +7,8 @@ import Auth from './Auth/Auth';
 import history from './history';
 import Create from "./pages/Create";
 import Play from "./pages/Play";
+import ChooseGame from "./pages/ChooseGame";
+
 
 const auth = new Auth();
 
@@ -28,7 +30,10 @@ export const makeMainRoutes = () => {
           }}/>
           <Route exact path="/create" render={(props) => <Create auth={auth} {...props} />} />
           <Route exact path="/play" render={(props) => <Play auth={auth} {...props} />} />
+          <Route exact path="/choosegame" render={(props) => <ChooseGame auth={auth} {...props} />} />
+
         </div>
       </Router>
   );
 }
+
