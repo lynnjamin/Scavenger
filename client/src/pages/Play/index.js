@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import history from '../../history';
 import "./styles.css";
-import API from "../utils/API";
-//
+import API from "../../utils/API";
+
 
 class Play extends Component {
-
 
   //new stuff to hold the state
   //This will hold the game that is chosen to 
