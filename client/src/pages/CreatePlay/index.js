@@ -12,10 +12,12 @@ class CreatePlay extends Component {
         </header>
         <button className="createButton"><a href="/create">Create</a></button>
         <br/>
-        <button className="playButton"><a href="/play">Play</a></button>
+        <button className="playButton"><a href="/chooseGame">Play</a></button>
       </div>
     );
   }
 }
 
 export default CreatePlay;
+
+//use form (controlled components/uncontrolled)
