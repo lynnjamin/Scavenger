@@ -12,6 +12,7 @@ export default class Auth {
     clientID: AUTH_CONFIG.clientId,
     redirectUri: AUTH_CONFIG.callbackUrl,
     responseType: 'token id_token',
+    audience: 'https://dev-ylrhzqgg.auth0.com/userinfo',
     scope: 'openid'
   });
 
@@ -50,14 +51,13 @@ export default class Auth {
   }
 
   setSession(authResult) {
-    // Set isLoggedIn flag in localStorage
-    localStorage.setItem('isLoggedIn', 'true');
-
     // Set the time that the access token will expire at
     let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-    this.accessToken = authResult.accessToken;
-    this.idToken = authResult.idToken;
-    this.expiresAt = expiresAt;
+
+    // Set their tokens at local storage
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
 
     // navigate to the home route
     history.replace('/home');
@@ -76,26 +76,24 @@ export default class Auth {
   }
 
   logout() {
-    // Remove tokens and expiry time
-    this.accessToken = null;
-    this.idToken = null;
-    this.expiresAt = 0;
-
     // Remove isLoggedIn flag from localStorage
-    localStorage.removeItem('isLoggedIn');
+    // localStorage.removeItem('isLoggedIn');
 
     this.auth0.logout({
       returnTo: window.location.origin
     });
-
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
     // navigate to the home route
-    history.repçlace('/home');
+    history.replace('/home');
   }
+
 
   isAuthenticated() {
     // Check whether the current time is past the
     // access token's expiry time
-    let expiresAt = this.expiresAt;
+    let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
 }

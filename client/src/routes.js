@@ -26,8 +26,8 @@ export const makeMainRoutes = () => {
             handleAuthentication(props);
             return <Callback {...props} /> 
           }}/>
-          <Route exact path="/create" component={Create} />
-          <Route exact path="/play" component={Play} />
+          <Route exact path="/create" render={(props) => <Create auth={auth} {...props} />} />
+          <Route exact path="/play" render={(props) => <Play auth={auth} {...props} />} />
         </div>
       </Router>
   );

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 class CreatePlay extends Component {
@@ -10,9 +11,9 @@ class CreatePlay extends Component {
         <header>
           <h1>Scavenger</h1>
         </header>
-        <button className="createButton"><a href="/create">Create</a></button>
+        <button className="createButton"><Link to="/create">Create</Link></button>
         <br/>
-        <button className="playButton"><a href="/play">Play</a></button>
+        <button className="playButton"><Link to="/play">Play</Link></button>
       </div>
     );
   }
