@@ -26,10 +26,10 @@ class Play extends Component {
       <a href="/" className="logout">logout</a>
         <title>Play</title>
         <header>
-        <h1>Choose a Scavenger Hunt</h1>
+        <h1>Follow the Instructions</h1>
         </header>
-        <div className ="huntsBox">
-            <p>Scavenger hunts go here</p>
+        <div className ="instructionBox">
+            <p>Scavenger hunts instructions</p>
         </div>
       </div>
     );
