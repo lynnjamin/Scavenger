@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
 
 mongoose.connect(
   process.env.MONGODB_URI ||
@@ -9,16 +8,18 @@ mongoose.connect(
 );
 
 const gameSeed = [
-  {
-    title: "Find the tresure!",
+  {  
     // cluecode: {
     //   [{clue: "Like Amazon, but free!",
     //     code: "The library"}]
     // }
-
+    title: "Find the treasure!",
     date: new Date(Date.now())
-  }
-  
+  },
+  {
+    title: "Find my other sock!",
+    date: new Date(Date.now())
+  }  
 ];
 
 db.Game
