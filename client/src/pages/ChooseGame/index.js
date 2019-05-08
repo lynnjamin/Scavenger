@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import Jumbotron from               "../../components/Jumbotron";
-import { List, ListItem } from      "../../components/List";
 import DeleteBtn from "../../components/DeleteBtn";
-import { Col, Row, Container } from "../../components/Grid";
-import API from "../../utils/API";
+import Jumbotron from "../../components/Jumbotron";
+import API from       "../../utils/API";
 import { Link } from           "react-router-dom";
+import { List, ListItem } from      "../../components/List";
+import { Col, Row, Container } from "../../components/Grid";
+
 
 class Games extends Component {
-    //This will hold the game that is chosen to 
     state = {
-        game: {}
+        games: [],
+        title :"",
+        date: ""
     }
 
     componentDidMount() {
@@ -25,7 +27,7 @@ class Games extends Component {
     };
 
     deleteGame = id => {
-        API.deleteBook(id)
+        API.deleteGame(id)
             .then(res => this.loadGames())
             .catch(err => console.log(err));
     };
@@ -47,7 +49,7 @@ class Games extends Component {
                                 <List>
                                     {this.state.games.map(game => (
                                         <ListItem key={game._id}>
-                                            <Link to={"/books/" + game._id}>
+                                            <Link to={"/games/" + game._id}>
                                                 <strong>
                                                     {game.title} by {game.author}
                                                 </strong>
