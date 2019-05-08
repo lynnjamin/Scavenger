@@ -10,15 +10,18 @@ mongoose.connect(
 
 const gameSeed = [
   {
-    title: "Find the tresure!",
+    title: "Find the treasure!",
     // cluecode: {
     //   [{clue: "Like Amazon, but free!",
     //     code: "The library"}]
     // }
 
     date: new Date(Date.now())
-  }
-  
+  },
+  {
+    title: "Find my other sock!",
+    date: new Date(Date.now())
+  }  
 ];
 
 db.Game
