@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const gameSchema = new Schema({  
-  //We need to decide how we are going to represent the clues and codes in the schema
-
+const gameSchema = new Schema({
   title: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  // cluecode: [
-  //   {clue : String }
-  //   {code : String }]
+  game: [
+    {clue: { type: String, required: true }},
+    {code: { type: String, required: true }}
+
+  ],
+
 });
 
 const Game = mongoose.model("Game", gameSchema);

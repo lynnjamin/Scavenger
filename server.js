@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,8 +17,9 @@ if (process.env.NODE_ENV === "production") {
 
 
 // If deployed, use the deployed database. Otherwise use the local googlebooks database
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scavengergame";
-// mongoose.connect(MONGODB_URI,{useNewUrlParser: true});
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scavengergame";
+mongoose.connect(MONGODB_URI,{useNewUrlParser: true});
+
 
 // Add routes, both API and view
 app.use(routes);
