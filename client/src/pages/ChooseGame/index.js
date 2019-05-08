@@ -23,7 +23,6 @@ class ChooseGame extends Component {
   render() {
     return (
       <div className="container">
-      <a href="/" className="logout">logout</a>
         <title>Choose a Scavenger Hunt</title>
         <header>
         <h1>Choose a Scavenger Hunt</h1>

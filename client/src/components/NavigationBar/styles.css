@@ -1,0 +1,13 @@
+.navigation{
+    height:auto;
+    margin-top:2%;
+}
+.startButton{
+    float:right;
+}
+.loginButton{
+    float:right;
+}
+.logoutButton{
+    float:right;
+}

@@ -8,7 +8,6 @@ class Create extends Component {
       <div className="container"> 
         { isAuthenticated() ? 
           <div>
-            <a href="/" className="logout">logout</a>
             <title>Create</title>
             <header>
               <h1>Create a Scavenger Hunt</h1>

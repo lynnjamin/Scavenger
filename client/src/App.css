@@ -2,29 +2,29 @@ body{
   background-color: #c4c4c4;
 }
 .container {
-  margin-top:10em;
+  margin-top:1%;
   text-align: center;
   background-color: #737c67;
-  height:20em;
+  padding-bottom:5px;
 }
 header{
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 .logout{
   float:right;
   color:#eeeeee;
 }
-.homeButton{
-  margin:5px;
+.startButton{
+  margin-left:5px;
   background-color: #616059;
 }
 .loginButton{
-  margin:5px;
+  margin-left:5px;
   background-color: #616059;
 }
 .logoutButton{
-  margin:5px;
+  margin0left:5px;
   background-color: #616059;
 }
 button{
