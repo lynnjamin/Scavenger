@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const mongoose = require("mongoose");
-const gamesController = require("./controllers/gamesController");
 
 
 
@@ -23,17 +21,8 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scavengergame"
 mongoose.connect(MONGODB_URI,{useNewUrlParser: true});
 
 
-<<<<<<< HEAD
-// Define API routes here
-app.route("/api/games")
-.get(gamesController.findAll)
-.post(gamesController.create);
-
-
-=======
 // Add routes, both API and view
 app.use(routes);
->>>>>>> master
 // Send every other request to the React app
 
 // Define any API routes before this runs
