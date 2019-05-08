@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const booksController = require("../../controllers/gamesController");
+const gamesController = require("../../controllers/gamesController");
 
 // Matches with "/api/games"
 router.route("/")
-  .get(gameController.findAll)
+  .get(gamesController.findAll)
   .post(gamesController.create);
 
 // Matches with "/api/games/:id"
