@@ -2,6 +2,9 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const mongoose = require("mongoose");
+const gamesController = require("./controllers/gamesController");
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -13,10 +16,15 @@ if (process.env.NODE_ENV === "production") {
 
 
 // If deployed, use the deployed database. Otherwise use the local googlebooks database
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scavengergame";
-// mongoose.connect(MONGODB_URI,{useNewUrlParser: true});
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scavengergame";
+mongoose.connect(MONGODB_URI,{useNewUrlParser: true});
+
 
 // Define API routes here
+app.route("/api/games")
+.get(gamesController.findAll)
+.post(gamesController.create);
+
 
 // Send every other request to the React app
 // Define any API routes before this runs

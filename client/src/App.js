@@ -15,17 +15,9 @@ class App extends Component {
     this.props.auth.logout();
   }
 
-  componentDidMount() {
-    const { renewSession } = this.props.auth;
-
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      renewSession();
-    }
-  }
 
   render() {
     const { isAuthenticated } = this.props.auth;
-
     return (
       <div>
         {/* <Navbar fluid>

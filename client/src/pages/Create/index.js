@@ -12,8 +12,9 @@ class InputForm extends React.Component {
   }
 
   handleSubmit = e => {
+    e.preventDefault();
     const { title, clue, code } = this.state;
-    alert(`added: ${title} and ${clue} with ${code}`);
+    console.log("added: ", title, clue, code);
   };
 
   // Title Handler
@@ -26,7 +27,7 @@ class InputForm extends React.Component {
   handleClueChange = idx => e => {
     const newClue = this.state.clue.map((clue, sidx) => {
       if (idx !== sidx) return clue;
-      return { ...clue, name: e.target.value };
+      return { ...clue, value: e.target.value };
     });
     this.setState({ clue: newClue });
   };
@@ -34,7 +35,7 @@ class InputForm extends React.Component {
   handleCodeChange = idx => e => {
     const newCode = this.state.code.map((code, sidx) => {
       if (idx !== sidx) return code;
-      return { ...code, name: e.target.value };
+      return { ...code, value: e.target.value };
     });
     this.setState({ code: newCode });
   };
@@ -78,14 +79,14 @@ class InputForm extends React.Component {
             <input
               type="text"
               placeholder={`Clue #${idx + 1}`}
-              value={this.state.clue[idx].name}
+              value={this.state.clue[idx].value}
               onChange={this.handleClueChange(idx)}
               required
             />
               <input
               type="text"
               placeholder={`Code #${idx + 1}`}
-              value={this.state.code[idx].name}
+              value={this.state.code[idx].value}
               onChange={this.handleCodeChange(idx)}
               required
             />
