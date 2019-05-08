@@ -51,7 +51,7 @@ class Games extends Component {
                                         <ListItem key={game._id}>
                                             <Link to={"/games/" + game._id}>
                                                 <strong>
-                                                    {game.title} by {game.author}
+                                                    {game.title} created on {game.date}
                                                 </strong>
                                             </Link>
                                             <DeleteBtn onClick={() => this.deleteGame(game._id)} />
