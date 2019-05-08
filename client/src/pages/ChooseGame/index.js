@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
 import "./styles.css";
 
 class ChooseGame extends Component {
@@ -30,6 +31,7 @@ class ChooseGame extends Component {
         <div className ="huntsBox">
             <p>Scavenger hunts go here</p>
         </div>
+        <button className="playButton"><Link to="/play">Choose Game</Link></button>
       </div>
     );
   }

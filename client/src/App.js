@@ -27,25 +27,38 @@ class App extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div>
+      //this container currently appears on all pages
+        //will have to remove it and place on potentially the home page
+      //will still need home page to render on localhost:3000 instead of localhost:3000/home
+        //home page currently renders the createPlay page if authenticated
+      <div className="App container">
+        <title>Login Scavenger</title>
+        <header>
+          <h1>Scavenger</h1>
+        </header>
+        <div className="descriptionBox">
+          <p>A build your own scavenger hunt app</p>
+        </div>
+      
         {/* <Navbar fluid>
           <Navbar.Header> */}
             <Navbar.Brand>
               <a href="#">Auth0 - React</a>
             </Navbar.Brand>
+            <br/>
             <Button
               bsStyle="primary"
-              className="btn-margin"
+              className="btn-margin homeButton"
               onClick={this.goTo.bind(this, 'home')}
             >
-              Home
+              Start
             </Button>
             {
               !isAuthenticated() && (
                   <Button
                     id="qsLoginBtn"
                     bsStyle="primary"
-                    className="btn-margin"
+                    className="btn-margin loginButton"
                     onClick={this.login.bind(this)}
                   >
                     Log In
@@ -57,7 +70,7 @@ class App extends Component {
                   <Button
                     id="qsLogoutBtn"
                     bsStyle="primary"
-                    className="btn-margin"
+                    className="btn-margin logoutButton"
                     onClick={this.logout.bind(this)}
                   >
                     Log Out

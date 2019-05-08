@@ -13,7 +13,7 @@ class CreatePlay extends Component {
         </header>
         <button className="createButton"><Link to="/create">Create</Link></button>
         <br/>
-        <button className="playButton"><Link to="/play">Play</Link></button>
+        <button className="playButton"><Link to="/chooseGame">Hunt</Link></button>
       </div>
     );
   }

@@ -34,8 +34,8 @@ class Play extends Component {
         </header>
         <div className ="instructionBox">
             <p>Scavenger hunts instructions</p>
-            <button className="playButton"><Link to="/chooseGame">Choose Game</Link></button>
         </div>
+        <button className="playButton"><Link to="/chooseGame">Back to Choose Game</Link></button>
       </div>
     );
   }

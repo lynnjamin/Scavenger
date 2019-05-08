@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import CreatePlay from '../pages/CreatePlay';
 
 class Home extends Component {
-  login() {
-    this.props.auth.login();
-  }
+  
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
       <div className="container">
+        
         {
           isAuthenticated() && (
               <CreatePlay />
