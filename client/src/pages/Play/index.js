@@ -17,7 +17,7 @@ class Play extends Component {
 //   state = {
 //     game : {}
 //   }
-//    // When this component mounts, grab the book with the _id of this.props.match.params.id
+//    // When this component mounts, grab the game with the _id of this.props.match.params.id
 //   componentDidMount() {
 //     API.getGame(this.props.match.params.id)
 //       .then(res => this.setState({ game: res.data }))
