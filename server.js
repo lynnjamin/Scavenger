@@ -11,6 +11,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+
+// If deployed, use the deployed database. Otherwise use the local googlebooks database
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scavengergame";
+// mongoose.connect(MONGODB_URI,{useNewUrlParser: true});
+
 // Define API routes here
 
 // Send every other request to the React app
