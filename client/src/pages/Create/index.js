@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from 'axios';
+import history from '../../history';
 
 class InputForm extends React.Component {
   constructor() {
@@ -58,6 +60,32 @@ class InputForm extends React.Component {
     });
   };
   
+//////////////////////
+// POST to database //
+//////////////////////
+  saveGame = e => {
+    e.preventDefault();
+    const game = []
+    for(let i =0; i < this.state.clue.length; i++){
+      let clue = this.state.clue[i].value;
+      let code = this.state.code[i].value;
+      game.push({ clue: clue, code: code})
+    }
+    const newGame = {
+      title: this.state.title,
+      game: game
+    }
+    axios.request({ 
+      method: 'post',
+      url: "/api/games",
+      data: newGame,
+    }).then((response) => {
+      console.log(response.config.data);
+      history.replace('/home');
+    }).catch((error) => {
+        console.log(error);
+    });
+  }
 
 
   render() {
@@ -109,7 +137,7 @@ class InputForm extends React.Component {
         >
           Add Clue and Code
         </button>
-        <button>Submit</button>
+        <button onClick={this.saveGame}>Submit</button>
       </form>
     </div>
     );

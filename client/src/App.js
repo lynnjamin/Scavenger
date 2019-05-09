@@ -21,8 +21,6 @@ class App extends Component {
     const { isAuthenticated } = this.props.auth;
     return (
       <div>
-        {/* <Navbar fluid>
-          <Navbar.Header> */}
             <Navbar.Brand>
               <a href="#">Auth0 - React</a>
             </Navbar.Brand>
@@ -57,8 +55,6 @@ class App extends Component {
                   </Button>
                 )
             }
-          {/* </Navbar.Header>
-        </Navbar> */}
       </div>
     );
   }
