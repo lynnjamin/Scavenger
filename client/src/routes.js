@@ -8,7 +8,7 @@ import history from './history';
 import Create from "./pages/Create";
 import Play from "./pages/Play";
 import ChooseGame from "./pages/ChooseGame";
-
+//import NavigationBar from "./components/NavigationBar";
 
 const auth = new Auth();
 
