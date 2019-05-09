@@ -16,18 +16,10 @@ class App extends Component {
     this.props.auth.logout();
   }
 
-  componentDidMount() {
-    const { renewSession } = this.props.auth;
-
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      renewSession();
-    }
-  }
 
   render() {
     console.log(this.props);
     const { isAuthenticated } = this.props.auth;
-
     return (
       //this container currently appears on all pages
         //will have to remove it and place on potentially the home page

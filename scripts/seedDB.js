@@ -13,12 +13,30 @@ const gameSeed = [
     //   [{clue: "Like Amazon, but free!",
     //     code: "The library"}]
     // }
-    title: "Find the treasure!",
-    date: new Date(Date.now())
+    "title" : "Find the treasure!",
+    "date" : new Date(Date.now())
+    // "cluecode": [
+    //   {
+    //       "clues": "Like Amazon, but free!",
+    //       "code": "Library"
+    //   },
+    //   {
+    //     "clues": "half river, half swimming pool",
+    //     "code": "Barton Springs"
+    //   }
   },
   {
-    title: "Find my other sock!",
-    date: new Date(Date.now())
+    "title": "Find my other sock!",
+    "date" : new Date(Date.now())
+    // "cluecode": [
+    //   {
+    //       "clues": "Like Amazon, but free!",
+    //       "code": "Library"
+    //   },
+    //   {
+    //     "clues": "half river, half swimming pool",
+    //     "code": "Barton Springs"
+    //   }
   }  
 ];
 
