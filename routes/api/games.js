@@ -2,6 +2,7 @@ const router = require("express").Router();
 const gamesController = require("../../controllers/gamesController");
 
 // Matches with "/api/games"
+// These are methods that call into the db
 router.route("/")
   .get(gamesController.findAll)
   .post(gamesController.create);
