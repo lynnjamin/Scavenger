@@ -9,10 +9,13 @@ class Home extends Component {
     const { isAuthenticated } = this.props.auth;
     return (
       <div className="container">
+        
         {
           isAuthenticated() && (
+                
               <CreatePlay />
             )
+            
         }
         {
           !isAuthenticated() && (

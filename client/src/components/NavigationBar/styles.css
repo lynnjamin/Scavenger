@@ -1,0 +1,33 @@
+.navigation{
+    height:auto;
+    margin-top:2%;
+}
+/* issue: these buttons don't have styling priority when they should (background color not going through) */
+.startButton{
+    float:right;
+    margin-left:5px;
+    background-color: #616059;
+}
+
+.loginButton{
+    float:right;
+    margin-left:5px;
+    background-color: #616059;
+}
+.logoutButton{
+    float:right;
+    margin-left:5px;
+    background-color: #616059;
+}
+
+
+button{
+    background-color: #616059;
+}
+
+a{
+    color:#eeeeee;
+}
+.backToStart{
+    color:#eeeeee;
+}

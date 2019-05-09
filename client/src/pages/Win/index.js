@@ -5,7 +5,6 @@ class Win extends Component {
   render() {
     return (
       <div className="container">
-        <a href="/" className="logout">logout</a>
         <title>You Win!</title>
         <header>
           <h1>Scavenger</h1>

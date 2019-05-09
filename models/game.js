@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const gameSchema = new Schema({
   title: { type: String, required: true },
+  date: { type: Date, default: Date.now },
   game: [
     {
       clue: { type: String, required: true },

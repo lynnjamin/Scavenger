@@ -27,15 +27,14 @@ class Play extends Component {
   render() {
     return (
       <div className="container">
-      <a href="/" className="logout">logout</a>
         <title>Play</title>
         <header>
         <h1>Follow the Instructions</h1>
         </header>
         <div className ="instructionBox">
-            <p>Scavenger hunts instructions</p>
-            <button className="playButton"><Link to="/chooseGame">Choose Game</Link></button>
+            <p>Scavenger hunt instructions</p>
         </div>
+        <button className="playButton"><Link to="/chooseGame">Back to Choose Game</Link></button>
       </div>
     );
   }
