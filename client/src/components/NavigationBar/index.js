@@ -30,10 +30,10 @@ class NavigationBar extends Component {
     return (
       <div className="container navigation">
         <div className="row">
-          <div className="col-3">
-          <a href="/" className="backToStart"><h2>Scavenger</h2></a>
+          <div className="col-4">
+          <a href="/" className="backToStart"><h2>Scavenger <i class="fas fa-search"></i></h2></a>
           </div>
-          <div className="col-3">
+          <div className="col-2">
             
           </div>
           
@@ -41,7 +41,7 @@ class NavigationBar extends Component {
       
             <br/>
             <Button
-              bsStyle="primary"
+              variant="dark"
               className="btn-margin startButton"
               onClick={this.goTo.bind(this, 'home')}
             >
@@ -51,7 +51,7 @@ class NavigationBar extends Component {
               !isAuthenticated() && (
                   <Button
                     id="qsLoginBtn"
-                    bsStyle="primary"
+                    variant="dark"
                     className="btn-margin loginButton"
                     onClick={this.login.bind(this)}
                   >
@@ -63,7 +63,7 @@ class NavigationBar extends Component {
               isAuthenticated() && (
                   <Button
                     id="qsLogoutBtn"
-                    bsStyle="primary"
+                    variant="dark"
                     className="btn-margin logoutButton"
                     onClick={this.logout.bind(this)}
                   >

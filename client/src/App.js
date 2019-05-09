@@ -21,11 +21,6 @@ class App extends Component {
     console.log(this.props);
     const { isAuthenticated } = this.props.auth;
     return (
-      //this container currently appears on all pages
-        //will have to remove it and place on potentially the home page
-      //will still need home page to render on localhost:3000 instead of localhost:3000/home
-        //localhost:3000/ still needs to have this div below but it needs to go away when clicking away to another page
-        //home page currently renders the createPlay page if authenticated
       <div>
             <NavigationBar auth={this.props.auth}history={this.props.history}/>
             
