@@ -90,17 +90,7 @@ class InputForm extends React.Component {
 
   render() {
     return (
-      // <div className="container"> 
-      //   { isAuthenticated() ? 
-      //     <div>
-      //       <title>Create</title>
-      //       <header>
-      //         <h1>Create a Scavenger Hunt</h1>
-      //       </header>
-      //       <div className ="instructionBox">
-      //         <p>instructions go here</p>
-      //       </div>
-    <div className="container">
+    <div className="container contentContainer">
       <h5>Title</h5>
       <form onSubmit={this.handleSubmit}>
         <input

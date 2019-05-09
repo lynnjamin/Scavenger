@@ -40,7 +40,7 @@ class ChooseGame extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container contentContainer">
         <title>Choose a Scavenger Hunt</title>
         <header>
         <h1>Choose a Scavenger Hunt</h1>
@@ -48,7 +48,7 @@ class ChooseGame extends Component {
         <div className ="huntsBox">
             <p>Scavenger hunts go here</p>
         </div>
-        <button className="playButton"><Link to="/play">Choose Game</Link></button>
+        <button className="chooseGameButton"><Link to="/play" className ="playLink">Choose Game</Link></button>
       </div>
     );
   }

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Button } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import "./styles.css";
 
 class NavigationBar extends Component {
@@ -28,24 +31,30 @@ class NavigationBar extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
+
       <div className="container navigation">
-        <div className="row">
-          <div className="col-4">
-          <a href="/" className="backToStart"><h2>Scavenger <i class="fas fa-search"></i></h2></a>
-          </div>
-          <div className="col-2">
-            
-          </div>
-          
-        <div className = "col-6">
-      
-            <br/>
-            <Button
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="#home"><a href="/" className="backToStart">Scavenger <i className="fas fa-search"></i></a></Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Nav>
+          <Button
               variant="dark"
               className="btn-margin startButton"
               onClick={this.goTo.bind(this, 'home')}
             >
-              Start
+              Home
             </Button>
             {
               !isAuthenticated() && (
@@ -69,11 +78,12 @@ class NavigationBar extends Component {
                   >
                     Log Out
                   </Button>
-                )
+              )
             }
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
         </div>
-        </div>
-      </div>
     );
   }
 }

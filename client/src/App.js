@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import NavigationBar from "./components/NavigationBar";
-import { Button } from 'react-bootstrap';
+import Landing from './pages/Landing/index';
 import './App.css';
 
 class App extends Component {
@@ -19,10 +18,11 @@ class App extends Component {
 
   render() {
     console.log(this.props);
-    const { isAuthenticated } = this.props.auth;
     return (
       <div>
-            <NavigationBar auth={this.props.auth}history={this.props.history}/>
+            {/* must have the landing page have content but not have it transfer over to other pages 
+                  potentially need switch statement*/}
+            <Landing />
             
       </div>
     );
