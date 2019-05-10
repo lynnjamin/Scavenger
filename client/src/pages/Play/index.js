@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import history from '../../history';
 import "./styles.css";
 import {Link} from 'react-router-dom';
 import ChooseGame from '../ChooseGame';
 import Win from '../Win';
+import NavigationBar from '../../components/NavigationBar';
 
 
 // import API from "../utils/API";
@@ -26,7 +26,11 @@ class Play extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
+        <div>
+          <NavigationBar auth={this.props.auth}history={this.props.history}/>
+        </div>
+      <div className="container contentContainer">
         <title>Play</title>
         <header>
         <h1>Follow the Instructions</h1>
@@ -34,8 +38,9 @@ class Play extends Component {
         <div className ="instructionBox">
             <p>Scavenger hunt instructions</p>
         </div>
-        <button className="playButton"><Link to="/chooseGame">Back to Choose Game</Link></button>
+        <button className="chooseGameButton"><Link to="/chooseGame" className="playLink">Back to Choose Game</Link></button>
       </div>
+    </div>
     );
   }
 }

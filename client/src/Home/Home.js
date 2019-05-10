@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CreatePlay from '../pages/CreatePlay';
+import NavigationBar from '../components/NavigationBar';
+import "./styles.css";
 
 class Home extends Component {
   login() {
@@ -12,8 +14,12 @@ class Home extends Component {
         
         {
           isAuthenticated() && (
-                
-              <CreatePlay />
+            <div>
+              <div>
+                <NavigationBar auth={this.props.auth}history={this.props.history}/>
+                <CreatePlay />
+              </div>
+            </div>
             )
             
         }

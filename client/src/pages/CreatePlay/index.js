@@ -5,14 +5,14 @@ import "./styles.css";
 class CreatePlay extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container contentContainer">
         <title>Create or Play</title>
         <header>
           <h1>Scavenger</h1>
         </header>
-        <button className="createButton"><Link to="/create">Create</Link></button>
+        <button className="createButton"><Link to="/create" className="createLink">Create</Link></button>
         <br/>
-        <button className="playButton"><Link to="/chooseGame">Hunt</Link></button>
+        <button className="huntButton"><Link to="/chooseGame" className="playLink">Hunt</Link></button>
       </div>
     );
   }

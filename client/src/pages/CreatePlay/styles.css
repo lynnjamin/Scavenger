@@ -1,0 +1,17 @@
+.createButton{
+    width:100px;
+}
+.huntButton{
+    width:100px;
+    margin-top:10px;
+}
+.createLink{
+    color:#eeeeee;
+}
+.playLink{
+    color:#eeeeee;
+}
+.contentContainer{
+    height:60vh;
+    padding:10%;
+}
