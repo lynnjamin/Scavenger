@@ -18,7 +18,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props);
+    console.log("some data: ", this.props);
     const { isAuthenticated } = this.props.auth;
     return (
       //this container currently appears on all pages

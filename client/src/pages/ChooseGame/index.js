@@ -8,8 +8,6 @@ import { List, ListItem } from      "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 
 class ChooseGame extends Component {
-
-
 // class Games extends Component {
 //     state = {
 //         games: [],
