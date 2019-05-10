@@ -31,7 +31,7 @@ export default class Auth {
     this.auth0.authorize();
   }
 
-  handleAuthentication(v) {
+  handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
@@ -60,19 +60,22 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem('sub', authResult.idTokenPayload.sub);
 
 
-    const userData = {name: authResult.idTokenPayload.name, nickname: authResult.idTokenPayload.nickname, sub: authResult.idTokenPayload.sub};
+    const userData = {name: authResult.idTokenPayload.name, 
+      nickname: authResult.idTokenPayload.nickname, 
+      sub: authResult.idTokenPayload.sub};
 
 
-  axios.get("/api/users/:id")
-  .then((response) => {
-   console.log("GETTING", response);
-  }).catch((error) => {
-    console.log(error);
-  });
+  // axios.get("/api/users/" + id)
+  // .then((response) => {
+  //  console.log("GETTING", response);
+  // }).catch((error) => {
+  //   console.log(error);
+  // });
 
-    axios.post("/api/users", userData)
+    axios.put("/api/users/:id", userData)
     .then((response) => {
       console.log("whyyy? ", response);
     }).catch((error) => {
@@ -86,9 +89,9 @@ export default class Auth {
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
        if (authResult && authResult.accessToken && authResult.idToken) {
-         this.setSession(authResult);
+        //  this.setSession(authResult);
        } else if (err) {
-         this.logout();
+        //  this.logout();
          console.log(err);
          alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
        }

@@ -17,7 +17,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props);
     return (
       <div>
             {/* must have the landing page have content but not have it transfer over to other pages 

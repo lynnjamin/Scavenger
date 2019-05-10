@@ -17,7 +17,6 @@ class InputForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { title, clue, code } = this.state;
-    console.log("added: ", title, clue, code);
   };
 
   // Title Handler

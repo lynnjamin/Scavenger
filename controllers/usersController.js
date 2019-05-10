@@ -3,7 +3,6 @@ const db = require("../models");
 // Defining methods for the usersController
 module.exports = {
   findAll: function(req, res) {
-    console.log("test");
     db.User
       .find(req.query)
       .sort({ date: -1 })
@@ -11,14 +10,12 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    console.log("hit");
     db.User
-      .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+    .find({ sub: req.params.id })
+    .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log("create", req.body)
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -26,13 +23,13 @@ module.exports = {
   },
   update: function(req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+      .findOneAndUpdate({ sub: req.body.sub }, req.body, {upsert: true})
+      .then(dbModel => console.log("model: ", dbModel) || res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
     db.User
-      .findById({ _id: req.params.id })
+      .find({ sub: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
