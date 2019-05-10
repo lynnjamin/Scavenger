@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Button } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import {Link} from 'react-router-dom';
 import "./styles.css";
 
 class NavigationBar extends Component {
@@ -28,30 +32,29 @@ class NavigationBar extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
+
       <div className="container navigation">
-        <div className="row">
-          <div className="col-3">
-          <a href="/" className="backToStart"><h2>Scavenger</h2></a>
-          </div>
-          <div className="col-3">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="#home"><Link to="/"className="backToStart">Scavenger <i className="fas fa-search"></i></Link></Navbar.Brand>
+        
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
             
-          </div>
-          
-        <div className = "col-6">
-      
-            <br/>
-            <Button
-              bsStyle="primary"
+          </Nav>
+          <Nav>
+          <Button
+              variant="dark"
               className="btn-margin startButton"
               onClick={this.goTo.bind(this, 'home')}
             >
-              Start
+              Home
             </Button>
             {
               !isAuthenticated() && (
                   <Button
                     id="qsLoginBtn"
-                    bsStyle="primary"
+                    variant="dark"
                     className="btn-margin loginButton"
                     onClick={this.login.bind(this)}
                   >
@@ -63,17 +66,18 @@ class NavigationBar extends Component {
               isAuthenticated() && (
                   <Button
                     id="qsLogoutBtn"
-                    bsStyle="primary"
+                    variant="dark"
                     className="btn-margin logoutButton"
                     onClick={this.logout.bind(this)}
                   >
                     Log Out
                   </Button>
-                )
+              )
             }
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
         </div>
-        </div>
-      </div>
     );
   }
 }

@@ -4,7 +4,7 @@ import "./styles.css";
 class Win extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container contentContainer">
         <title>You Win!</title>
         <header>
           <h1>Scavenger</h1>
