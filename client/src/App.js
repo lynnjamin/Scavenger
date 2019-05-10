@@ -18,8 +18,8 @@ class App extends Component {
 
 
   render() {
-    const { isAuthenticated } = this.props.auth;
-    return (
+    console.log(this.props);
+     return (
       //this container currently appears on all pages
         //will have to remove it and place on potentially the home page
       //will still need home page to render on localhost:3000 instead of localhost:3000/home
