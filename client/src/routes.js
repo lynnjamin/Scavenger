@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Route, Router} from 'react-router-dom';
 import App from './App';
 import Home from './Home/Home';
 import Callback from './Callback/Callback';
@@ -8,7 +8,8 @@ import history from './history';
 import Create from "./pages/Create";
 import Play from "./pages/Play";
 import ChooseGame from "./pages/ChooseGame";
-//import NavigationBar from "./components/NavigationBar";
+
+import NavigationBar from "./components/NavigationBar";
 
 const auth = new Auth();
 
@@ -20,9 +21,11 @@ const handleAuthentication = ({location}) => {
 
 export const makeMainRoutes = () => {
   return (
+    
       <Router history={history}>
         <div>
-          <Route path="/" render={(props) => <App auth={auth} {...props} />} />
+          {/* <Route path="/" render={(props) => <NavigationBar auth={auth} {...props} />} /> */}
+          <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);

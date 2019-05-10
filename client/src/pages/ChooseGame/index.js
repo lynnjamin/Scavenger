@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./styles.css";
+import NavigationBar from '../../components/NavigationBar';
 import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
@@ -8,7 +9,6 @@ import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 
 class ChooseGame extends Component {
-//class Games extends Component {
   state = {
     games: [],
     title: "",
@@ -32,16 +32,21 @@ class ChooseGame extends Component {
 
   render() {
     return (
-      // <div className="container">
-      //   <title>Choose a Scavenger Hunt</title>
-      //   <header>
-      //   <h1>Choose a Scavenger Hunt</h1>
-      //   </header>
-      //   <div className ="huntsBox">
-      //       <p>Scavenger hunts go here</p>
-      //   </div>
-      //   <button className="playButton"><Link to="/play">Choose Game</Link></button>
-      // </div>
+    //   <div>
+    //   <div>
+    //     <NavigationBar auth={this.props.auth}history={this.props.history}/>
+    //   </div>
+    //   <div className="container contentContainer">
+    //     <title>Choose a Scavenger Hunt</title>
+    //     <header>
+    //     <h1>Choose a Scavenger Hunt</h1>
+    //     </header>
+    //     <div className ="huntsBox">
+    //         <p>Scavenger hunts go here</p>
+    //     </div>
+    //     <button className="chooseGameButton"><Link to="/play" className ="playLink">Choose Game</Link></button>
+    //   </div>
+    // </div>
       <Container fluid>
         <Row>
           <Col size="md-6">
@@ -69,6 +74,7 @@ class ChooseGame extends Component {
           </Col>
         </Row>
       </Container>
+     
     );
   }
 

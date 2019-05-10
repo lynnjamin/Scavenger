@@ -1,6 +1,7 @@
 import history from '../history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
+import axios from "axios";
 
 export default class Auth {
   accessToken;
@@ -13,7 +14,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     responseType: 'token id_token',
     audience: 'https://dev-ylrhzqgg.auth0.com/userinfo',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   constructor() {
@@ -42,6 +43,7 @@ export default class Auth {
     });
   }
 
+
   getAccessToken() {
     return this.accessToken;
   }
@@ -58,17 +60,38 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem('sub', authResult.idTokenPayload.sub);
+
+
+    const userData = {name: authResult.idTokenPayload.name, 
+      nickname: authResult.idTokenPayload.nickname, 
+      sub: authResult.idTokenPayload.sub};
+
+
+  // axios.get("/api/users/" + id)
+  // .then((response) => {
+  //  console.log("GETTING", response);
+  // }).catch((error) => {
+  //   console.log(error);
+  // });
+
+    axios.put("/api/users/:id", userData)
+    .then((response) => {
+      console.log("whyyy? ", response);
+    }).catch((error) => {
+        console.log(error);
+    });
 
     // navigate to the home route
     history.replace('/home');
-  }
+  } 
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
        if (authResult && authResult.accessToken && authResult.idToken) {
-         this.setSession(authResult);
+        //  this.setSession(authResult);
        } else if (err) {
-         this.logout();
+        //  this.logout();
          console.log(err);
          alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
        }
@@ -96,4 +119,7 @@ export default class Auth {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
+
+
+
 }

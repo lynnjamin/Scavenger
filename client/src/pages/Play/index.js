@@ -6,6 +6,7 @@ import Win from '../Win';
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
+import NavigationBar from '../../components/NavigationBar';
 
 class Play extends Component {
   state = {
@@ -53,7 +54,10 @@ class Play extends Component {
   render() {
     return (
       <div>
-      <div className="container">
+        <div>
+          <NavigationBar auth={this.props.auth}history={this.props.history}/>
+        </div>
+      <div className="container contentContainer">
         <title>Play</title>
         <header>
         <h1>Follow the Instructions</h1>
@@ -61,7 +65,7 @@ class Play extends Component {
         <div className ="instructionBox">
             <p>Scavenger hunt instructions</p>
         </div>
-        <button className="playButton"><Link to="/chooseGame">Back to Choose Game</Link></button>
+        <button className="chooseGameButton"><Link to="/chooseGame" className="playLink">Back to Choose Game</Link></button>
       </div>
       <Container fluid>
         <Row>
