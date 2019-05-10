@@ -32,49 +32,44 @@ class ChooseGame extends Component {
 
   render() {
     return (
-    //   <div>
-    //   <div>
-    //     <NavigationBar auth={this.props.auth}history={this.props.history}/>
-    //   </div>
-    //   <div className="container contentContainer">
-    //     <title>Choose a Scavenger Hunt</title>
-    //     <header>
-    //     <h1>Choose a Scavenger Hunt</h1>
-    //     </header>
-    //     <div className ="huntsBox">
-    //         <p>Scavenger hunts go here</p>
-    //     </div>
-    //     <button className="chooseGameButton"><Link to="/play" className ="playLink">Choose Game</Link></button>
-    //   </div>
-    // </div>
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Col size="md-6 sm-12">
-              <Jumbotron>
-                <h1>Game List</h1>
-              </Jumbotron>
-              {this.state.games.length ? (
-                <List>
-                  {this.state.games.map(game => (
-                    <ListItem key={game._id}>
-                      <Link to={"/play/" + game._id}>
-                        <strong>
-                          {game.title} created on {game.date}
-                        </strong>
-                      </Link>
-                      <DeleteBtn onClick={() => this.deleteGame(game._id)} />
-                    </ListItem>
-                  ))}
-                </List>
-              ) : (
-                  <h3>No Results to Display</h3>
-                )}
-            </Col>
-          </Col>
-        </Row>
-      </Container>
-     
+      <div>
+        <div>
+          <NavigationBar auth={this.props.auth} history={this.props.history} />
+        </div>
+        <div className="container contentContainer">
+          <title>Choose a Scavenger Hunt</title>
+          <header>
+            <h1>Choose a Scavenger Hunt</h1>
+          </header>
+          <div className="huntsBox">
+            <Container fluid>
+              <Row>
+                <Col size="md-12">
+                    {this.state.games.length ? (
+                      <List>
+                        {this.state.games.map(game => (
+                          <ListItem key={game._id}>
+                            <Link to={"/play/" + game._id}>
+                              <strong>
+                                {game.title} created on {game.date}
+                              </strong>
+                            </Link>
+                            <DeleteBtn onClick={() => this.deleteGame(game._id)} />
+                          </ListItem>
+                        ))}
+                      </List>
+                    ) : (
+                        <h3>No Results to Display</h3>
+                      )}
+                </Col>
+              </Row>
+            </Container>
+          </div>
+          <button className="chooseGameButton"><Link to="/play" className="playLink">Choose Game</Link></button>
+        </div>
+      </div>
+
+
     );
   }
 
