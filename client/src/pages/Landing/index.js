@@ -50,6 +50,17 @@ class Landing extends Component {
             }
             {
               isAuthenticated() && (
+                <Button
+                variant="dark"
+                className="btn-margin landingHomeButton"
+                onClick={this.goTo.bind(this, 'home')}
+              >
+                Home
+              </Button>
+              )
+            }
+            {
+              isAuthenticated() && (
                   <Button
                     id="qsLogoutBtn"
                     variant="dark"
@@ -60,6 +71,7 @@ class Landing extends Component {
                   </Button>
               )
             }
+          
         </div>
         
       </div>

@@ -37,14 +37,18 @@ class Home extends Component {
         }
         {
           !isAuthenticated() && (
+            <div className="loggedOutContainer">
+              <h1 className="titleh1">Scavenger</h1>
               <h4>
                 You are not logged in! Please{' '}
-                <a style={{ cursor: 'pointer' }}
+                <a style={{ cursor: 'pointer', color:'#eeeeee' }}
+                  
                   onClick={this.login.bind(this)}>
                   Log In
                 </a>
                 {' '}to continue.
               </h4>
+            </div>
             )
         }
       </div>
