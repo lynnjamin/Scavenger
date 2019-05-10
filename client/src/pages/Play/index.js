@@ -3,6 +3,7 @@ import "./styles.css";
 import {Link} from 'react-router-dom';
 import ChooseGame from '../ChooseGame';
 import Win from '../Win';
+import NavigationBar from '../../components/NavigationBar';
 
 
 // import API from "../utils/API";
@@ -25,6 +26,10 @@ class Play extends Component {
 
   render() {
     return (
+      <div>
+        <div>
+          <NavigationBar auth={this.props.auth}history={this.props.history}/>
+        </div>
       <div className="container contentContainer">
         <title>Play</title>
         <header>
@@ -35,6 +40,7 @@ class Play extends Component {
         </div>
         <button className="chooseGameButton"><Link to="/chooseGame" className="playLink">Back to Choose Game</Link></button>
       </div>
+    </div>
     );
   }
 }

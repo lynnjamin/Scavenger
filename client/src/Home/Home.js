@@ -17,8 +17,6 @@ class Home extends Component {
             <div>
               <div>
                 <NavigationBar auth={this.props.auth}history={this.props.history}/>
-              </div>
-              <div>
                 <CreatePlay />
               </div>
             </div>

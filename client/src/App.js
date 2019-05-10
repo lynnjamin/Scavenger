@@ -22,7 +22,7 @@ class App extends Component {
       <div>
             {/* must have the landing page have content but not have it transfer over to other pages 
                   potentially need switch statement*/}
-            <Landing />
+            <Landing auth={this.props.auth}history={this.props.history}/>
             
       </div>
     );
