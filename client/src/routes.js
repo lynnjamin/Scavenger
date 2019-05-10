@@ -29,7 +29,7 @@ export const makeMainRoutes = () => {
             return <Callback {...props} /> 
           }}/>
           <Route exact path="/create" render={(props) => <Create auth={auth} {...props} />} />
-          <Route exact path="/play" render={(props) => <Play auth={auth} {...props} />} />
+          <Route exact path="/play/:id" render={(props) => <Play auth={auth} {...props} />} />
           <Route exact path="/choosegame" render={(props) => <ChooseGame auth={auth} {...props} />} />
 
         </div>
