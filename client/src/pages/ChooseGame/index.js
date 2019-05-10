@@ -40,18 +40,21 @@ class ChooseGame extends Component {
   render() {
     return (
       <div>
-        <div>
-          <NavigationBar auth={this.props.auth}history={this.props.history}/>
-        </div>
-        <div className="container contentContainer">
-          <title>Choose a Scavenger Hunt</title>
-          <header>
-          <h1>Choose a Scavenger Hunt</h1>
-          </header>
-          <div className ="huntsBox">
-              <p>Scavenger hunts go here</p>
+        
+        <div className="container">
+          <div>
+            <NavigationBar auth={this.props.auth}history={this.props.history}/>
           </div>
-          <button className="chooseGameButton"><Link to="/play" className ="playLink">Choose Game</Link></button>
+          <div className="contentContainer">
+            <title>Choose a Scavenger Hunt</title>
+            <header>
+            <h1>Choose a Scavenger Hunt</h1>
+            </header>
+            <div className ="huntsBox">
+                <p>Scavenger hunts go here</p>
+            </div>
+            <Link to="/play" className ="playLink"><button className="chooseGameButton">Choose Game</button></Link>
+          </div>
         </div>
       </div>
     );

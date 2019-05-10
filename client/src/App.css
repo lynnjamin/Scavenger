@@ -1,11 +1,17 @@
 body{
-  background-color: #c4c4c4;
+  background-image: url(paper-bg.jpg)
 }
-.container {
-  margin-top:1%;
+h1{
+  font-family: 'Arvo', serif;
+}
+.titleh1{
+  font-family: 'Permanent Marker', cursive;
+}
+.container { 
   text-align: center;
   background-color: #737c67;
   padding-bottom:5px;
+  border-radius:10px;
 }
 header{
   padding-top: 10px;
@@ -29,6 +35,7 @@ header{
 }
 button{
   background-color: #616059;
+  color:white;
 }
 
 Link{

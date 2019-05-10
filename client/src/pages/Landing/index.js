@@ -27,9 +27,9 @@ class Landing extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div className="container descriptionContainer">
+      <div className="container landingContainer">
         <header>
-          <h1>Scavenger</h1>
+          <h1 className="titleh1">Scavenger</h1>
         </header>
         <div className="descriptionBox">
           <p>A build your own scavenger hunt app</p>
