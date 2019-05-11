@@ -77,7 +77,7 @@ export default class Auth {
 
     axios.put("/api/users/:id", userData)
     .then((response) => {
-      console.log("whyyy? ", response);
+      console.log(response);
     }).catch((error) => {
         console.log(error);
     });

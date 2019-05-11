@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import axios from 'axios';
 import history from '../../history';
 import NavigationBar from '../../components/NavigationBar';
+import "./styles.css";
 
 class InputForm extends React.Component {
   constructor() {
@@ -13,6 +14,14 @@ class InputForm extends React.Component {
       code: [{ value: "" }]
     };
   }
+
+    componentDidMount(){
+    axios.get("/api/users/" + window.localStorage.sub)
+    .then(response => {
+      console.log(response)
+    })
+  }
+
 
   handleSubmit = e => {
     e.preventDefault();
@@ -65,17 +74,25 @@ class InputForm extends React.Component {
 //////////////////////
   saveGame = e => {
     e.preventDefault();
+    const title = this.state.title;
     const game = []
     for(let i =0; i < this.state.clue.length; i++){
       let clue = this.state.clue[i].value;
       let code = this.state.code[i].value;
       game.push({ clue: clue, code: code})
     }
-    const newGame = {
-      title: this.state.title,
-      game: game
-    }
     axios.request({ 
+      method: 'get',
+      url: "/api/users/" + window.localStorage.sub
+    })
+    .then(function (response) {
+      const newGame = {
+        title: title,
+        game: game,
+        createdBy: window.localStorage.sub,
+        nickname: response.data[0].nickname
+     };
+      axios.request({ 
       method: 'post',
       url: "/api/games",
       data: newGame,
@@ -85,64 +102,66 @@ class InputForm extends React.Component {
     }).catch((error) => {
         console.log(error);
     });
+  })
   }
-
 
   render() {
     return (
     <div>
-      <div>
-        <NavigationBar auth={this.props.auth}history={this.props.history}/>
-      </div>
-      <div className="container contentContainer">
-        <h5>Title</h5>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Title is required"
-            value={this.state.title}
-            onChange={this.handleTitleChange}
-            required
-          />
-        
-          <h5>Clue and Code</h5>
-          {this.state.clue.map((clue, idx) => (
-            <div className="clueinput">
-              <input
-                type="text"
-                placeholder={`Clue #${idx + 1}`}
-                value={this.state.clue[idx].value}
-                onChange={this.handleClueChange(idx)}
-                required
-              />
+      <div className="container">
+        <div>
+          <NavigationBar auth={this.props.auth}history={this.props.history}/>
+        </div>
+        <div className="contentContainer">
+          <h5>Title</h5>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              placeholder="Title is required"
+              value={this.state.title}
+              onChange={this.handleTitleChange}
+              required
+            />
+          <br/><br/>
+            <h5>Clue and Code</h5>
+            {this.state.clue.map((clue, idx) => (
+              <div className="clueinput">
                 <input
-                type="text"
-                placeholder={`Code #${idx + 1}`}
-                value={this.state.code[idx].value}
-                onChange={this.handleCodeChange(idx)}
-                required
-              />
-              <button
-                type="button"
-                onClick={this.handleRemoveClueAndCode(idx)}
-                className="small"
-                >
-                Delete
-              </button>
-            </div>
-          ))}
+                  type="text"
+                  placeholder={`Clue #${idx + 1}`}
+                  value={this.state.clue[idx].value}
+                  onChange={this.handleClueChange(idx)}
+                  required
+                />
+                  <input
+                  type="text"
+                  placeholder={`Code #${idx + 1}`}
+                  value={this.state.code[idx].value}
+                  onChange={this.handleCodeChange(idx)}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={this.handleRemoveClueAndCode(idx)}
+                  className="small deleteButton"
+                  >
+                  Delete
+                </button>
+              </div>
+            ))}
 
 
 
-          <button
-            type="button"
-            onClick={this.handleAddClueandCode}
-            className="small"
-          >
-            Add Clue and Code
-          </button>
-          <button onClick={this.saveGame}>Submit</button>
-        </form>
+            <button
+              type="button"
+              onClick={this.handleAddClueandCode}
+              className="small addClueAndCode"
+            >
+              Add Clue and Code
+            </button>
+            <button onClick={this.saveGame} className="clueSubmit">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
     );
@@ -150,4 +169,3 @@ class InputForm extends React.Component {
 }
 
 export default InputForm;
-

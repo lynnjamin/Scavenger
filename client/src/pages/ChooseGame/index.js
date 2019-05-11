@@ -7,24 +7,31 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
+import Moment from 'react-moment';
+import axios from "axios";
 
 class ChooseGame extends Component {
   state = {
     games: [],
     title: "",
-    date: ""
+    date: "",
+    nickname: "",
   }
 
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
+  // When this component mounts, grab all the games from the db 
   componentDidMount() {
+    this.loadGames();
+  }
+  
+  loadGames = () => {
     API.getGames()
-      .then(res => this.setState({ games: res.data }))
+      .then(res => this.setState({ games: res.data })
+      )
       .catch(err => console.log(err));
   }
-
-  //function here to make each div clickable to bring the user to the instructions page
+  
   deleteGame = id => {
-    API.deleteGame(id)
+      API.deleteGame(id)
       .then(res => this.loadGames())
       .catch(err => console.log(err));
   };
@@ -51,7 +58,7 @@ class ChooseGame extends Component {
                           <ListItem key={game._id}>
                             <Link to={"/play/" + game._id}>
                               <strong>
-                                {game.title} created on {game.date}
+                                {game.title} created on <Moment format="DD/MM/YYYY">{game.date}</Moment> by {game.nickname}
                               </strong>
                             </Link>
                             <DeleteBtn onClick={() => this.deleteGame(game._id)} />
