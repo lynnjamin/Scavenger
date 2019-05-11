@@ -15,6 +15,14 @@ class InputForm extends React.Component {
     };
   }
 
+    componentDidMount(){
+    axios.get("/api/users/" + window.localStorage.sub)
+    .then(response => {
+      console.log(response)
+    })
+  }
+
+
   handleSubmit = e => {
     e.preventDefault();
     const { title, clue, code } = this.state;
@@ -66,17 +74,25 @@ class InputForm extends React.Component {
 //////////////////////
   saveGame = e => {
     e.preventDefault();
+    const title = this.state.title;
     const game = []
     for(let i =0; i < this.state.clue.length; i++){
       let clue = this.state.clue[i].value;
       let code = this.state.code[i].value;
       game.push({ clue: clue, code: code})
     }
-    const newGame = {
-      title: this.state.title,
-      game: game
-    }
     axios.request({ 
+      method: 'get',
+      url: "/api/users/" + window.localStorage.sub
+    })
+    .then(function (response) {
+      const newGame = {
+        title: title,
+        game: game,
+        createdBy: window.localStorage.sub,
+        nickname: response.data[0].nickname
+     };
+      axios.request({ 
       method: 'post',
       url: "/api/games",
       data: newGame,
@@ -86,8 +102,8 @@ class InputForm extends React.Component {
     }).catch((error) => {
         console.log(error);
     });
+  })
   }
-
 
   render() {
     return (
@@ -153,4 +169,3 @@ class InputForm extends React.Component {
 }
 
 export default InputForm;
-
