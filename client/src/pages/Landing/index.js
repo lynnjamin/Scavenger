@@ -27,9 +27,9 @@ class Landing extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div className="container descriptionContainer">
+      <div className="container landingContainer">
         <header>
-          <h1>Scavenger</h1>
+          <h1 className="titleh1">Scavenger</h1>
         </header>
         <div className="descriptionBox">
           <p>A build your own scavenger hunt app</p>
@@ -50,6 +50,17 @@ class Landing extends Component {
             }
             {
               isAuthenticated() && (
+                <Button
+                variant="dark"
+                className="btn-margin landingHomeButton"
+                onClick={this.goTo.bind(this, 'home')}
+              >
+                Home
+              </Button>
+              )
+            }
+            {
+              isAuthenticated() && (
                   <Button
                     id="qsLogoutBtn"
                     variant="dark"
@@ -60,6 +71,7 @@ class Landing extends Component {
                   </Button>
               )
             }
+          
         </div>
         
       </div>

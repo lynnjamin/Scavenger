@@ -72,7 +72,6 @@ class ChooseGame extends Component {
               </Row>
             </Container>
           </div>
-          <button className="chooseGameButton"><Link to="/play" className="playLink">Choose Game</Link></button>
         </div>
       </div>
 

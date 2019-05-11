@@ -2,6 +2,11 @@
     height:60vh;
     padding:10%;
 }
-.landingLogin{
-
+.landingContainer{
+    height:60vh;
+    padding:10%;
+    margin-top:5%;
+}
+.landingHomeButton{
+    margin-right:5px;
 }

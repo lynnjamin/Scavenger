@@ -54,18 +54,20 @@ class Play extends Component {
   render() {
     return (
       <div>
+      <div className="container">
         <div>
           <NavigationBar auth={this.props.auth}history={this.props.history}/>
         </div>
-      <div className="container contentContainer">
-        <title>Play</title>
-        <header>
-        <h1>Follow the Instructions</h1>
-        </header>
+        <div className="contentContainer">
+          <title>Play</title>
+          <header>
+          <h1>Follow the Instructions</h1>
+          </header>
         <div className ="instructionBox">
             <p>Scavenger hunt instructions</p>
         </div>
-        <button className="chooseGameButton"><Link to="/chooseGame" className="playLink">Back to Choose Game</Link></button>
+        <Link to="/chooseGame" className="playLink"><button className="chooseGameButton">Back to Choose Game</button></Link>
+        </div>
       </div>
       <Container fluid>
         <Row>
