@@ -1,5 +1,5 @@
 export const AUTH_CONFIG = {
-  domain: 'dev-ylrhzqgg.auth0.com',
-  clientId: '2isnH2yhOwSsX3nzfKmWVK5qlvfRqkgW',
+  domain: 'lynnjamint.auth0.com',
+  clientId: 'cwVXg8Y39wZ6yUNJSnaOdJ0bCwMuf301',
   callbackUrl: 'http://localhost:3000/callback'
 }

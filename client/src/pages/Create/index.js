@@ -3,9 +3,49 @@ import ReactDOM from "react-dom";
 import axios from 'axios';
 import history from '../../history';
 import NavigationBar from '../../components/NavigationBar';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 import "./styles.css";
 
-class InputForm extends React.Component {
+const styles = {
+  root: {
+    backgroundColor: "white",
+    marginRight: "10px",
+  },
+  input: {
+    color: "black",
+  },
+  containedPrimary: {
+    marginLeft: "20px",
+  },
+  submitButton: {
+    marginLeft: "100px",
+  }
+};
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { 500: '#093E0A' }
+  },
+});
+
+const theme2 = createMuiTheme({
+  palette: {
+    primary: { main: '#9e9d24' }
+  },
+});
+
+const theme3 = createMuiTheme({
+  palette: {
+    primary: { main: '#3e2723' }
+  },
+});class InputForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -108,58 +148,86 @@ class InputForm extends React.Component {
   render() {
     return (
     <div>
+      <NavigationBar auth={this.props.auth}history={this.props.history}/>
+
       <div className="container">
-        <div>
-          <NavigationBar auth={this.props.auth}history={this.props.history}/>
-        </div>
-        <div className="contentContainer">
+      <div className="createGame">
+        <h1>Create a Game</h1>
+      </div>
+        <div className="createContainer">
           <h5>Title</h5>
           <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="Title is required"
-              value={this.state.title}
-              onChange={this.handleTitleChange}
-              required
-            />
+          <MuiThemeProvider theme={theme}>
+          <TextField
+            required
+            id="filled-required"
+            label="Required"
+            className={this.props.classes.root}
+            margin="normal"
+            variant="filled"
+          />
+          </  MuiThemeProvider>
+         
           <br/><br/>
             <h5>Clue and Code</h5>
             {this.state.clue.map((clue, idx) => (
               <div className="clueinput">
-                <input
-                  type="text"
+              <MuiThemeProvider theme={theme}>
+                <TextField
+                  id="outlined-textarea"
+                  label="Enter clue here"
+                  multiline
+                  className={this.props.classes.root}
+                  margin="normal"
+                  variant="filled"
                   placeholder={`Clue #${idx + 1}`}
                   value={this.state.clue[idx].value}
                   onChange={this.handleClueChange(idx)}
                   required
                 />
-                  <input
-                  type="text"
+
+                <TextField
+                  id="outlined-textarea"
+                  label="Enter code here"
+                  multiline
+                  className={this.props.classes.root}
+                  margin="normal"
+                  variant="filled"
                   placeholder={`Code #${idx + 1}`}
                   value={this.state.code[idx].value}
                   onChange={this.handleCodeChange(idx)}
                   required
-                />
-                <button
-                  type="button"
-                  onClick={this.handleRemoveClueAndCode(idx)}
-                  className="small deleteButton"
-                  >
-                  Delete
-                </button>
+                />  
+              </MuiThemeProvider>
+            
+
+                <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
+                <DeleteIcon />
+                </IconButton>
               </div>
             ))}
 
 
+              <MuiThemeProvider theme={theme2}>
+                  <Fab 
+                    color="primary" 
+                    aria-label="Add" 
+                    className={this.props.classes.fabButton}
+                    onClick={this.handleAddClueandCode}
+                    size="small"
+                    >
+                  <AddIcon />
+                  </Fab>
+              </MuiThemeProvider>
 
-            <button
-              type="button"
-              onClick={this.handleAddClueandCode}
-              className="small addClueAndCode"
-            >
-              Add Clue and Code
-            </button>
-            <button onClick={this.saveGame} className="clueSubmit">Submit</button>
+              <MuiThemeProvider theme={theme3}>
+                  <Button onClick={this.onSave} variant="contained" color="primary" className={this.props.classes.submitButton}>
+                    Send
+                    <Icon className="newIcon">send</Icon>
+                  </Button>
+              </MuiThemeProvider>
+
+
           </form>
         </div>
       </div>
@@ -168,4 +236,4 @@ class InputForm extends React.Component {
   }
 }
 
-export default InputForm;
+export default withStyles(styles)(InputForm);

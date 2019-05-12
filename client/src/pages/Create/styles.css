@@ -1,5 +1,13 @@
+h1{
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 2px 0 #808080, 0 2px #808080, 2px 0 #808080, 0 2px #808080;
+}
+h5{
+    font-family: 'Roboto Slab', serif;
+}
 .contentContainer{
     height:auto;
+    padding: 30px;
 }
 .instructionBox{
     background-color:#c5c5c5;
@@ -7,15 +15,41 @@
 
 .deleteButton{
     margin-left:5px;
+    background: #616159;
+    border-color: #eeeeee;
 }
 
 .addClueAndCode{
-    margin-right: 30px;
+    margin-right: 20px;
     margin-top: 1%;
     height:35px;
+    background: #616159;
+    border-color: #eeeeee;
 }
 
 .clueSubmit{
     margin-top: 1%;
+    margin-right: 20px;
     height:35px;
+    background: #616159;
+    border-color: #eeeeee;
+}
+.prettyTextInput {
+    background-color: #eeeeee;
+}
+.trashcanButton {
+    margin-top: 20px !important;
+}
+
+.createGame {
+    padding-top: 35px;
+}
+
+.createContainer {
+    background: #78909c;
+    border: 2px #616159 solid;
+    border-radius: 10px;
+    margin: 0px 70px;
+    padding-bottom: 40px;
+    padding-top: 10px;
 }
