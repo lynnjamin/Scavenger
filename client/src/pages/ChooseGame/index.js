@@ -45,23 +45,29 @@ class ChooseGame extends Component {
             <div className="huntsBox">
               <Container fluid>
                 <Row>
-                  <Col size="md-12">
+                  <Col size="md-1"></Col>
+                  <Col size="md-10">
                       {this.state.games.length ? (
                         <List>
+                          {/* all info must be within this list */}
                           {this.state.games.map(game => (
                             <ListItem key={game._id}>
                               <Link to={"/play/" + game._id}>
                                 <strong>
-                                  {game.title} created on {game.date}
-                                </strong>
+                                {console.log({game})}
+                                  {game.title}
+                                </strong><br/>
+                                created on {game.date}
                               </Link>
-                              <DeleteBtn onClick={() => this.deleteGame(game._id)} />
+                              <DeleteBtn onClick={() => this.deleteGame(game._id)} /><br/>
                             </ListItem>
                           ))}
                         </List>
                       ) : (
                           <h3>No Results to Display</h3>
                         )}
+                  </Col>
+                  <Col size="md-1">
                   </Col>
                 </Row>
               </Container>

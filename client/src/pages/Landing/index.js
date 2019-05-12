@@ -29,7 +29,7 @@ class Landing extends Component {
     return (
       <div className="container landingContainer">
         <header>
-          <h1 className="titleh1">Scavenger</h1>
+          <h1 className="titleh1 landingTitle">Scavenger</h1>
         </header>
         <div className="descriptionBox">
           <p>A build your own scavenger hunt app</p>

@@ -35,6 +35,7 @@ class InputForm extends React.Component {
     this.setState({ clue: newClue });
   };
 
+
   handleCodeChange = idx => e => {
     const newCode = this.state.code.map((code, sidx) => {
       if (idx !== sidx) return code;
@@ -109,7 +110,7 @@ class InputForm extends React.Component {
           <br/><br/>
             <h5>Clue and Code</h5>
             {this.state.clue.map((clue, idx) => (
-              <div className="clueinput">
+              <div className="clueInput">
                 <input
                   type="text"
                   placeholder={`Clue #${idx + 1}`}
