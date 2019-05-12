@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./styles.css";
 import NavigationBar from '../../components/NavigationBar';
-import DeleteBtn from "../../components/DeleteBtn";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
-import Moment from 'react-moment';
-import axios from "axios";
+import Moment from 'react-moment';  
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+
+
 
 class ChooseGame extends Component {
   state = {
@@ -44,9 +45,7 @@ class ChooseGame extends Component {
           <NavigationBar auth={this.props.auth} history={this.props.history} />
         </div>
         <div className="container contentContainer">
-          <header>
             <h1>Choose a Scavenger Hunt</h1>
-          </header>
             <Container fluid>
               <Row>
                 <Col size="md-12">
@@ -54,12 +53,21 @@ class ChooseGame extends Component {
                       <List>
                         {this.state.games.map(game => (
                           <ListItem key={game._id}>
-                            <Link to={"/play/" + game._id}>
-                              <strong>
-                                {game.title} created on <Moment format="DD/MM/YYYY">{game.date}</Moment> by {game.nickname}
-                              </strong>
-                            </Link>
-                            <DeleteBtn onClick={() => this.deleteGame(game._id)} />
+                            <div className="chooseGameFlexBox">
+                              <Link to={"/play/" + game._id}>
+                              
+                                <div className="chooseGameTitle">
+                                  {game.title} 
+                                </div>
+                              </Link>
+                              <div className="createdDiv">
+                                created on <Moment format="DD/MM/YYYY">{game.date}</Moment> by {game.nickname}
+                              </div>
+                            </div>
+                            <Button onClick={() => this.deleteGame(game._id)} variant="contained" color="secondary" className="chooseGameDelete">
+                              Delete
+                              <DeleteIcon className="chooseGameDeleteIcon" />
+                            </Button>
                           </ListItem>
                         ))}
                       </List>

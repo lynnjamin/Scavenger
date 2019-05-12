@@ -1,5 +1,34 @@
+h1{
+    margin-bottom: 40px;
+    font-family: 'Permanent Marker', cursive;
+}
 .playLink{
     color:#eeeeee;
 }
-.chooseGameButton{
+
+.chooseGameTitle {
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.createdDiv{
+    /* font-style: italic; */
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    color: dimgrey;
+}
+
+.chooseGameFlexBox{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: left;
+}
+
+.chooseGameDelete {
+    height: 35px;
+    width: 95px;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
 }

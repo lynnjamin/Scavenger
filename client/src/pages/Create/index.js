@@ -4,7 +4,32 @@ import axios from 'axios';
 import history from '../../history';
 import NavigationBar from '../../components/NavigationBar';
 import Button from 'react-bootstrap/Button'
+import TextField from '@material-ui/core/TextField';
+import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 import "./styles.css";
+
+const styles = {
+  root: {
+    backgroundColor: "white",
+    marginRight: "10px"
+  },
+  input: {
+    color: "black",
+  },
+  underline:{
+    '&:after': {
+      borderBottom:'2px solid red',
+    },
+  }
+};
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { 500: '#093E0A' }
+  },
+});
 
 class InputForm extends React.Component {
   constructor() {
@@ -114,8 +139,10 @@ class InputForm extends React.Component {
         <div>
         </div>
         <div className="contentContainer">
+        <h1>Create a Game</h1>
           <h5>Title</h5>
           <form onSubmit={this.handleSubmit}>
+          
             <input
               type="text"
               placeholder="Title is required"
@@ -127,27 +154,59 @@ class InputForm extends React.Component {
             <h5>Clue and Code</h5>
             {this.state.clue.map((clue, idx) => (
               <div className="clueinput">
-                <input
-                  type="text"
+              <MuiThemeProvider theme={theme}>
+                <TextField
+                  id="outlined-textarea"
+                  label="Enter clue here"
+                  multiline
+                  className={this.props.classes.root}
+                  margin="normal"
+                  variant="filled"
                   placeholder={`Clue #${idx + 1}`}
                   value={this.state.clue[idx].value}
                   onChange={this.handleClueChange(idx)}
                   required
                 />
-                  <input
+
+                <TextField
+                  id="outlined-textarea"
+                  label="Enter code here"
+                  multiline
+                  className={this.props.classes.root}
+                  margin="normal"
+                  variant="filled"
+                  placeholder={`Code #${idx + 1}`}
+                  value={this.state.code[idx].value}
+                  onChange={this.handleCodeChange(idx)}
+                  required
+                />  
+              </MuiThemeProvider>
+                {/* <input
+                  type="text"
+                  placeholder={`Clue #${idx + 1}`}
+                  value={this.state.clue[idx].value}
+                  onChange={this.handleClueChange(idx)}
+                  required
+                /> */}
+            
+                  {/* <input
                   type="text"
                   placeholder={`Code #${idx + 1}`}
                   value={this.state.code[idx].value}
                   onChange={this.handleCodeChange(idx)}
                   required
-                />
-                <Button
+                /> */}
+                {/* <Button
                   type="button"
                   onClick={this.handleRemoveClueAndCode(idx)}
                   variant="dark" className="btn-margin deleteButton"
                   >
                   Delete
-                </Button>
+                </Button> */}
+
+                <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
+                <DeleteIcon />
+                </IconButton>
               </div>
             ))}
 
@@ -160,7 +219,7 @@ class InputForm extends React.Component {
             >
               Add Clue and Code
             </Button>
-            <Button onClick={this.saveGame} variant="dark" className="btn-margin clueSubmit">Submit</Button>
+            <button onClick={this.saveGame} className="clueSubmit">Submit</button>
           </form>
         </div>
       </div>
@@ -169,4 +228,4 @@ class InputForm extends React.Component {
   }
 }
 
-export default InputForm;
+export default withStyles(styles)(InputForm);
