@@ -7,15 +7,22 @@
 
 .deleteButton{
     margin-left:5px;
+    background: #616159;
+    border-color: #eeeeee;
 }
 
 .addClueAndCode{
-    margin-right: 30px;
+    margin-right: 20px;
     margin-top: 1%;
     height:35px;
+    background: #616159;
+    border-color: #eeeeee;
 }
 
 .clueSubmit{
     margin-top: 1%;
+    margin-right: 20px;
     height:35px;
+    background: #616159;
+    border-color: #eeeeee;
 }

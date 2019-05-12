@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import ChooseGame from '../ChooseGame';
 import Win from '../Win';
 import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import NavigationBar from '../../components/NavigationBar';
 
@@ -13,7 +12,6 @@ class Play extends Component {
     // game:{}
     cluecode: [],
     title : "",
-    date : "",
     //codeSolved is used to keep track of how far we are into the game
     codesolved: 0,
     // answer is used to keep track of the user's code guess
@@ -34,8 +32,8 @@ class Play extends Component {
     API.getGame(this.props.match.params.id)
       .then(res => {
         console.log(res.data);
-        const {title, cluecode, date} = res.data;
-        this.setState({title, cluecode,})
+        const {title, game, date} = res.data;
+        this.setState({title, cluecode: game})
         //this.setState({ game: res.data })
       })
       .catch(err => console.log(err));
@@ -54,35 +52,16 @@ class Play extends Component {
   render() {
     return (
       <div>
+
       <div className="container">
         <div>
           <NavigationBar auth={this.props.auth}history={this.props.history}/>
         </div>
         <div className="contentContainer">
-          <title>Play</title>
-          <header>
           <h1>Follow the Instructions</h1>
-          </header>
-        <div className ="instructionBox">
-            <p>Scavenger hunt instructions</p>
-        </div>
-        <Link to="/chooseGame" className="playLink"><button className="chooseGameButton">Back to Choose Game</button></Link>
-        </div>
-      </div>
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                {this.state.title} created on {this.state.date}
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <p>
+
+        <div className="gameBox">
+          <h2>{this.state.title}</h2>
                 {this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : "" }
               <form onSubmit={this.handleSubmitCode}>
                 <input
@@ -96,10 +75,29 @@ class Play extends Component {
                   value="Submit"
                 />
               </form>
-              </p>
-            </article>
-          </Col>
+        </div> 
+
+              <div>
+              <Link to="/chooseGame" className="playLink"><button className="chooseGameButton">Back to Choose Game</button></Link>
+              </div>
+        </div>
+      </div>
+
+       
+
+      <Container fluid>
+        <Row>
+          <Col size="md-8">
+                        
+
+
+
+         </Col>
+
         </Row>
+        
+
+
       </Container>
       </div>
     );

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import axios from 'axios';
 import history from '../../history';
 import NavigationBar from '../../components/NavigationBar';
+import Button from 'react-bootstrap/Button'
 import "./styles.css";
 
 class InputForm extends React.Component {
@@ -108,9 +109,9 @@ class InputForm extends React.Component {
   render() {
     return (
     <div>
+      <NavigationBar auth={this.props.auth}history={this.props.history}/>
       <div className="container">
         <div>
-          <NavigationBar auth={this.props.auth}history={this.props.history}/>
         </div>
         <div className="contentContainer">
           <h5>Title</h5>
@@ -140,26 +141,26 @@ class InputForm extends React.Component {
                   onChange={this.handleCodeChange(idx)}
                   required
                 />
-                <button
+                <Button
                   type="button"
                   onClick={this.handleRemoveClueAndCode(idx)}
-                  className="small deleteButton"
+                  variant="dark" className="btn-margin deleteButton"
                   >
                   Delete
-                </button>
+                </Button>
               </div>
             ))}
 
 
 
-            <button
+            <Button
               type="button"
               onClick={this.handleAddClueandCode}
-              className="small addClueAndCode"
+              variant="dark" className="btn-margin addClueAndCode"
             >
               Add Clue and Code
-            </button>
-            <button onClick={this.saveGame} className="clueSubmit">Submit</button>
+            </Button>
+            <Button onClick={this.saveGame} variant="dark" className="btn-margin clueSubmit">Submit</Button>
           </form>
         </div>
       </div>

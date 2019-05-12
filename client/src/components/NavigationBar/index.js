@@ -33,7 +33,7 @@ class NavigationBar extends Component {
 
     return (
 
-      <div className="container navigation">
+      <div className="navigation">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home"><Link to="/"className="backToStart">Scavenger <i className="fas fa-search"></i></Link></Navbar.Brand>
         

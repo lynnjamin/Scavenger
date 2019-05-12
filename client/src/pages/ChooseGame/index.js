@@ -44,11 +44,9 @@ class ChooseGame extends Component {
           <NavigationBar auth={this.props.auth} history={this.props.history} />
         </div>
         <div className="container contentContainer">
-          <title>Choose a Scavenger Hunt</title>
           <header>
             <h1>Choose a Scavenger Hunt</h1>
           </header>
-          <div className="huntsBox">
             <Container fluid>
               <Row>
                 <Col size="md-12">
@@ -71,14 +69,10 @@ class ChooseGame extends Component {
                 </Col>
               </Row>
             </Container>
-          </div>
         </div>
       </div>
-
-
     );
   }
-
 }
 
 export default ChooseGame;

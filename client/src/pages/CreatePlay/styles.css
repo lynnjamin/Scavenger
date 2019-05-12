@@ -16,3 +16,15 @@
     height:60vh;
     padding:10%;
 }
+.createButton {
+    margin: 5px;
+    border-color: #9a9da0;
+}
+
+.huntButton {
+    margin: 5px;
+    border-color: #9a9da0;
+}
+.def {
+    font-family: 'Roboto Slab', serif;
+}
