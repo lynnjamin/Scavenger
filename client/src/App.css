@@ -6,11 +6,13 @@ h1{
 }
 .titleh1{
   font-family: 'Permanent Marker', cursive;
+  text-shadow: 2px 0 #808080, 0 2px #808080, 2px 0 #808080, 0 2px #808080;
+
 }
 .container { 
   text-align: center;
   background-color: #5F6C4D;
-  padding-bottom:150px;
+  padding-bottom:70px;
   border-radius:10px;
 }
 header{

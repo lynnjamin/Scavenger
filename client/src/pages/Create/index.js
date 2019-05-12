@@ -24,6 +24,9 @@ const styles = {
   containedPrimary: {
     marginLeft: "20px",
   },
+  submitButton: {
+    marginLeft: "100px",
+  }
 };
 
 const theme = createMuiTheme({
@@ -151,7 +154,7 @@ const theme3 = createMuiTheme({
       <div className="createGame">
         <h1>Create a Game</h1>
       </div>
-        <div className="contentContainer">
+        <div className="createContainer">
           <h5>Title</h5>
           <form onSubmit={this.handleSubmit}>
           <MuiThemeProvider theme={theme}>
@@ -164,13 +167,7 @@ const theme3 = createMuiTheme({
             variant="filled"
           />
           </  MuiThemeProvider>
-            {/* <input
-              type="text"
-              placeholder="Title is required"
-              value={this.state.title}
-              onChange={this.handleTitleChange}
-              required
-            /> */}
+         
           <br/><br/>
             <h5>Clue and Code</h5>
             {this.state.clue.map((clue, idx) => (
@@ -211,25 +208,24 @@ const theme3 = createMuiTheme({
             ))}
 
 
+              <MuiThemeProvider theme={theme2}>
+                  <Fab 
+                    color="primary" 
+                    aria-label="Add" 
+                    className={this.props.classes.fabButton}
+                    onClick={this.handleAddClueandCode}
+                    size="small"
+                    >
+                  <AddIcon />
+                  </Fab>
+              </MuiThemeProvider>
 
-          <MuiThemeProvider theme={theme2}>
-            <Fab 
-              color="primary" 
-              aria-label="Add" 
-              className="fabClass"
-              onClick={this.handleAddClueandCode}
-              size="small"
-              >
-            <AddIcon />
-            </Fab>
-          </MuiThemeProvider>
-
-        <MuiThemeProvider theme={theme3}>
-          <Button onClick={this.onSave} variant="contained" color="primary" className="newButton">
-            Send
-            <Icon className="newIcon">send</Icon>
-          </Button>
-        </MuiThemeProvider>
+              <MuiThemeProvider theme={theme3}>
+                  <Button onClick={this.onSave} variant="contained" color="primary" className={this.props.classes.submitButton}>
+                    Send
+                    <Icon className="newIcon">send</Icon>
+                  </Button>
+              </MuiThemeProvider>
 
 
           </form>

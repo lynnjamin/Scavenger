@@ -1,6 +1,8 @@
 h1{
     margin-bottom: 40px;
     font-family: 'Permanent Marker', cursive;
+    text-shadow: 2px 0 #808080, 0 2px #808080, 2px 0 #808080, 0 2px #808080;
+
 }
 .playLink{
     color:#eeeeee;
