@@ -14,11 +14,17 @@ const gameSeed = [
     "cluecode": [
       {
         clue: "Like Amazon, but free!",
-        code: "Library"
+        code: {
+          lat:30.265877,
+          lng:-97.751780
+        }
       },
       {
         clue: "half river, half swimming pool",
-        code: "Barton Springs"
+        code: {
+          lat:30.264005, 
+          lng:-97.771028
+        }
       }]
   },
   {
@@ -26,12 +32,18 @@ const gameSeed = [
     "date" : new Date(Date.now()),
     "cluecode": [
       {
-        clue: "Like Amazon, but free!",
-        code: "Library"
+        clue: "They say it's where you lay your head",
+        code: {
+          lat: 30.21215,
+          lng:-97.83238
+        }
       },
       {
         clue: "half river, half swimming pool",
-        code: "Barton Springs"
+        code: {
+          lat:30.264005, 
+          lng:-97.771028
+        }
       }]
   }
 ];
