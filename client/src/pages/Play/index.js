@@ -80,8 +80,8 @@ class Play extends Component {
   }
   handleSubmitCode = (event) => {
     event.preventDefault();
-    if (this.state.answer === this.state.cluecode[this.state.codesolved].code) {
-      console.log("what is this? :", this.state.cluecode[this.state.codesolved].code)
+    if (this.state.answer.toLowerCase().trim() === this.state.cluecode[this.state.codesolved].code.toLowerCase().trim()) {
+      console.log("answer :", this.state.cluecode[this.state.codesolved].code)
       console.log("something: ", this.state.codesolved);
       this.setState({codesolved: this.state.codesolved + 1, answer: "", wrongGuess: false});
     //  this.setState.codeSolved = this.state.codesolved + 1;
