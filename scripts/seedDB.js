@@ -10,8 +10,9 @@ mongoose.connect(
 const gameSeed = [
   {  
     "title" : "Find the treasure!",
+    "nickname": "Testy McTestface",
     "date" : new Date(Date.now()),
-    "cluecode": [
+    "game": [
       {
         clue: "Like Amazon, but free!",
         code: {
@@ -31,14 +32,15 @@ const gameSeed = [
   },
   {  
     "title" : "Test the code in class!",
+    "nickname": "Testy McTestface",
     "date" : new Date(Date.now()),
-    "cluecode": [
+    "game": [
       {
         clue: "The place you love to hate!",
         code: {
           text: "classroom",
-          lat:30.287032, 
-          lng:-97.728747
+          lat:30.28229959,
+          lng:-97.7363127
         }
       },
       {
@@ -52,8 +54,9 @@ const gameSeed = [
   },
   {
     "title": "Find my other sock!",
+    "nickname": "Testy McTestface",
     "date" : new Date(Date.now()),
-    "cluecode": [
+    "game": [
       {
         clue: "They say it's where you lay your head",
         code: {

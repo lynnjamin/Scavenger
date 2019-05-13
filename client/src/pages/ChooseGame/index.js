@@ -8,8 +8,6 @@ import Moment from 'react-moment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 
-
-
 class ChooseGame extends Component {
   state = {
     games: [],

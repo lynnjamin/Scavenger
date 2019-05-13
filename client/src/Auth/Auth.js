@@ -68,13 +68,6 @@ export default class Auth {
       sub: authResult.idTokenPayload.sub};
 
 
-  // axios.get("/api/users/" + id)
-  // .then((response) => {
-  //  console.log("GETTING", response);
-  // }).catch((error) => {
-  //   console.log(error);
-  // });
-
     axios.put("/api/users/:id", userData)
     .then(() => {
       history.replace('/home');
