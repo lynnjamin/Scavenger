@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import axios from 'axios';
 import history from '../../history';
 import Button from '@material-ui/core/Button';
@@ -10,6 +10,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import "./styles.css";
+//setting up the maps imports
+import React, { Component } from "react";
+import Map from '../../components/Map'
 
 const styles = {
   root: {
@@ -208,6 +211,8 @@ class InputForm extends React.Component {
                       required
                     />  
                   </MuiThemeProvider>
+
+                  {/* MAp goes here */}
               
 
                   <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">

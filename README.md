@@ -1,29 +1,25 @@
-# Create React Express App
+# scAvenger Assemble
+scAvenger Assemble is an app for playing a digital scavenger hunt style game with the use of GPS coordinates and created clues/instructions and mysteries. 
 
-## About This Boilerplate
+Check out our deployed version! (https://scavenger19.herokuapp.com/)
+Github page - (https://github.com/lynnjamin/Scavenger)
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## The Motivation
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+To create the possibilities for local adventures. A series of challenges and riddles that you can give your friends that encourage them to explore the world and be more mindful of their places in the universe.
 
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
-```
-npm install
-```
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
+## Built with
 
 ```
-npm start
+* React framework 
+* Node.JS and Express for routing and execution
+* Auth0 platform for authentication 
+* Mongoose and Mongo for database management
+* Google Maps API for geolocation
+
 ```
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+## Team
+[Andrew Osborn](https://github.com/Andosbor)
+[Ben Queener](https://github.com/BenQueener)
+[Lynn Tang](https://github.com/lynnjamin)
