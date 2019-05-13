@@ -79,6 +79,7 @@ class Play extends Component {
       })
       .catch(err => console.log(err));
   }
+  
   handleSubmitCode = (event) => {
     event.preventDefault();
     if (this.state.answer.toLowerCase().trim() === this.state.cluecode[this.state.codesolved].code.toLowerCase().trim()) {
