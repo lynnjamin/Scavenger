@@ -1,11 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import axios from 'axios';
-import history from '../../history';
-import NavigationBar from '../../components/NavigationBar';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import MapContainer from '../../components/MapContainer';
-mport React from "react";
 import axios from 'axios';
 import history from '../../history';
 import Button from '@material-ui/core/Button';

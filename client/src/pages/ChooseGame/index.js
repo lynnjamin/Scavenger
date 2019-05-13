@@ -1,30 +1,37 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./styles.css";
-import NavigationBar from '../../components/NavigationBar';
-import DeleteBtn from "../../components/DeleteBtn";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
+import Moment from 'react-moment';  
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+
+
 
 class ChooseGame extends Component {
   state = {
     games: [],
     title: "",
-    date: ""
+    date: "",
+    nickname: "",
   }
 
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
+  // When this component mounts, grab all the games from the db 
   componentDidMount() {
+    this.loadGames();
+  }
+  
+  loadGames = () => {
     API.getGames()
-      .then(res => this.setState({ games: res.data }))
+      .then(res => this.setState({ games: res.data })
+      )
       .catch(err => console.log(err));
   }
-
-  //function here to make each div clickable to bring the user to the instructions page
+  
   deleteGame = id => {
-    API.deleteGame(id)
+      API.deleteGame(id)
       .then(res => this.loadGames())
       .catch(err => console.log(err));
   };
@@ -33,15 +40,10 @@ class ChooseGame extends Component {
   render() {
     return (
       <div>
-        <div>
-          <NavigationBar auth={this.props.auth} history={this.props.history} />
-        </div>
         <div className="container contentContainer">
-          <title>Choose a Scavenger Hunt</title>
-          <header>
-            <h1>Choose a Scavenger Hunt</h1>
-          </header>
-          <div className="huntsBox">
+            <h1>Hunt</h1>
+          <div className="mainChooseGame">
+          <div className="chooseGameTitle">Choose a game by other players</div>
             <Container fluid>
               <Row>
                 <Col size="md-12">
@@ -49,30 +51,35 @@ class ChooseGame extends Component {
                       <List>
                         {this.state.games.map(game => (
                           <ListItem key={game._id}>
-                            <Link to={"/play/" + game._id}>
-                              <strong>
-                                {game.title} created on {game.date}
-                              </strong>
-                            </Link>
-                            <DeleteBtn onClick={() => this.deleteGame(game._id)} />
+                            <div className="chooseGameFlexBox">
+                              <Link to={"/play/" + game._id}>
+                              
+                                <div className="pickGameTitle">
+                                  {game.title} 
+                                </div>
+                              </Link>
+                              <div className="createdDiv">
+                                created on <Moment format="DD/MM/YYYY">{game.date}</Moment> by {game.nickname}
+                              </div>
+                            </div>
+                            <Button onClick={() => this.deleteGame(game._id)} variant="contained" color="secondary" className="chooseGameDelete">
+                              Delete
+                              <DeleteIcon className="chooseGameDeleteIcon" />
+                            </Button>
                           </ListItem>
                         ))}
                       </List>
                     ) : (
-                        <h3>No Results to Display</h3>
+                        <h3>There are no games! Go create one!</h3>
                       )}
                 </Col>
               </Row>
             </Container>
           </div>
-          <button className="chooseGameButton"><Link to="/play" className="playLink">Choose Game</Link></button>
         </div>
       </div>
-
-
     );
   }
-
 }
 
 export default ChooseGame;

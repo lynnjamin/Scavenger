@@ -1,13 +1,55 @@
 import React, { Component } from "react";
 import "./styles.css";
 import { Link } from 'react-router-dom';
-import ChooseGame from '../ChooseGame';
-import Win from '../Win';
-import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import NavigationBar from '../../components/NavigationBar';
+import Button from '@material-ui/core/Button';
+import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import TextField from '@material-ui/core/TextField';
+import Icon from '@material-ui/core/Icon';
 
+
+const styles = {
+  root: {
+    backgroundColor: "white",
+    marginRight: "10px",
+  },
+  input: {
+    color: "black",
+  },
+  chooseStyleButton: {
+    marginTop: "30px",
+  },
+  submitButton: {
+    marginTop: "25px"
+  }
+};
+
+const theme2 = createMuiTheme({
+  palette: {
+    primary: { 500: '#7c0000' }
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#00897b' }
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
+
+const theme3 = createMuiTheme({
+  palette: {
+    primary: { main: '#1b5e20' }
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 class Play extends Component {
   state = {
     // game:{}
@@ -25,9 +67,8 @@ class Play extends Component {
     }
   };
 
-
   handleChange = (event) => {
-    this.setState({ answer: event.target.value });
+    this.setState({answer: event.target.value, wrongGuess: false});
     console.log(this.state.answer);
   }
   // When this component mounts, grab the game with the _id of this.props.match.params.id
@@ -36,21 +77,12 @@ class Play extends Component {
     API.getGame(this.props.match.params.id)
       .then(res => {
         console.log(res.data);
-        const { title, cluecode, date } = res.data;
-        this.setState({ title, cluecode, })
+        const {title, game} = res.data;
+        this.setState({title, cluecode: game})
         //this.setState({ game: res.data })
       })
       .catch(err => console.log(err));
   }
-  // handleSubmitCode = (event) => {
-  //   event.preventDefault();
-  //   if (this.state.answer === this.state.cluecode[this.state.codesolved].code) {
-  //     console.log(this.state.codesolved);
-  //     this.setState({codesolved: this.state.codesolved + 1});
-  //   } else {
-  //     alert('Guess Again');
-  //   }
-  // }
 
   handleSubmitLocation = (event) => {
     event.preventDefault();
@@ -104,60 +136,86 @@ class Play extends Component {
       alert('Not close enough.');
     }
   }
+      handleSubmitCode = (event) => {
+        event.preventDefault();
+        if (this.state.answer === this.state.cluecode[this.state.codesolved].code.text) {
+          console.log("what is this? :", this.state.cluecode[this.state.codesolved].code.text)
+          console.log("something: ", this.state.codesolved);
+          this.setState({codesolved: this.state.codesolved + 1, answer: "", wrongGuess: false});
+        //  this.setState.codeSolved = this.state.codesolved + 1;
+        } else {
+          this.setState({wrongGuess: true, answer: ""});
+        }
+      }
 
 
   render() {
     return (
-      <div>
-        <div>
-          <NavigationBar auth={this.props.auth} history={this.props.history} />
-        </div>
-        <div className="container contentContainer">
-          <title>Play</title>
-          <header>
-            <h1>Follow the Instructions</h1>
-          </header>
-          <div className="instructionBox">
-            <p>Scavenger hunt instructions</p>
-          </div>
-          <button className="chooseGameButton"><Link to="/chooseGame" className="playLink">Back to Choose Game</Link></button>
-        </div>
-        <Container fluid>
-          <Row>
-            <Col size="md-12">
-              <h1>
-                {this.state.title}
-              </h1>
-            </Col>
-          </Row>
-          <Row>
-            <Col size="md-10 md-offset-1">
-              <article>
-                <p>
-                  {this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : ""}
-                  <button onClick={this.handleSubmitLocation}>
-                    I'm here.
-                </button>
+    <div>
+      <div className="container">
+        <div className="contentContainer">
+          <h1>Follow the Clue</h1>
+          <h1>Guess the Code!</h1>
 
-                  {/* <form onSubmit={this.handleSubmitCode}>
-                <input
-                  type="text" 
-                  answer ={this.state.answer}
-                  onChange={this.handleChange}
-                  placeholder="Enter the Code"
-                />
-                <input
-                  type="submit"
-                  value="Submit"
-                /> */}
-                </p>
-              </article>
-            </Col>
-          </Row>
-        </Container>
+        <div className="gameBox">
+          <div className="titleOfGame">
+            {this.state.title}
+          </div>
+            <div className="playClue">
+                {this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : "" }
+            </div>
+
+          {
+            this.state.wrongGuess
+              ? <p>Wrong</p>
+              : null
+            
+          }
+
+              <form onSubmit={this.handleSubmitCode}>
+              <MuiThemeProvider theme={theme2}>
+              <TextField
+                id="filled-with-placeholder"
+                label="Enter the code"
+                placeholder="Enter the code"
+                className={this.props.classes.root}
+                margin="normal"
+                variant="filled"
+                value={this.state.answer}
+                onChange={this.handleChange}
+              />
+              </MuiThemeProvider>
+
+              <MuiThemeProvider theme={theme3}>
+                <Button onClick={this.handleSubmitCode} variant="contained" color="primary" className={this.props.classes.submitButton}>
+                  Submit
+                  <Icon className="newIcon">send</Icon>
+                </Button>
+              </MuiThemeProvider>
+{/* ==========================I inserted the location button here================================== */}
+            <MuiThemeProvider theme={theme3}> 
+              <button onClick={this.handleSubmitLocation}>
+                    I'm here.
+              </button>
+            </MuiThemeProvider>  
+              
+            </form>
+          </div> 
+
+          <div>
+            <Link to="/chooseGame" className="playLink" style={{ textDecoration: 'none' }}>
+            <MuiThemeProvider theme={theme}>
+              <Button variant="contained" color="primary" className={this.props.classes.chooseStyleButton}>
+              Back to Choose Game
+              </Button>
+            </MuiThemeProvider>
+          </Link>
+        </div>
       </div>
+    </div>
+    </div>
     );
   }
 }
 
-export default Play;
+export default withStyles(styles)(Play);

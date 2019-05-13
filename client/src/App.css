@@ -1,11 +1,20 @@
 body{
-  background-color: #c4c4c4;
+  background-image: url(paper-bg.jpg)
 }
-.container {
-  margin-top:1%;
+h1{
+  font-family: 'Arvo', serif;
+}
+.titleh1{
+  font-family: 'Permanent Marker', cursive;
+  text-shadow: 2px 0 #808080, 0 2px #808080, 2px 0 #808080, 0 2px #808080;
+
+}
+.container { 
   text-align: center;
-  background-color: #737c67;
-  padding-bottom:5px;
+  background-color: #5F6C4D;
+  padding-bottom:70px;
+  border-radius:10px;
+  margin-bottom: 40px;
 }
 header{
   padding-top: 10px;
@@ -29,6 +38,7 @@ header{
 }
 button{
   background-color: #616059;
+  color:white;
 }
 
 Link{
