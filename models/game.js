@@ -6,11 +6,15 @@ const gameSchema = new Schema({
   game: [
     {
       clue: { type: String, required: true },
-      code: { type: String, required: true }
-    }
+      code: {
+             text : {type: String},
+             lat: {type: String},
+             lng: {type: String}
+      }
+    } 
   ],
   date: { type: Date, default: Date.now },
-  createdBy: { type: String, required: true },
+  createdBy: { type: String, required: true, default: "Admin" },
   nickname: { type: String, required: true }
 });
 

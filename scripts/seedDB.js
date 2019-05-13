@@ -10,28 +10,68 @@ mongoose.connect(
 const gameSeed = [
   {  
     "title" : "Find the treasure!",
+    "nickname": "Testy McTestface",
     "date" : new Date(Date.now()),
-    "cluecode": [
+    "game": [
       {
         clue: "Like Amazon, but free!",
-        code: "Library"
+        code: {
+          text: "Library",
+          lat:30.265877,
+          lng:-97.751780
+        }
       },
       {
         clue: "half river, half swimming pool",
-        code: "Barton Springs"
+        code: {
+          text: "Barton Springs",
+          lat:30.264005, 
+          lng:-97.771028
+        }
+      }]
+  },
+  {  
+    "title" : "Test the code in class!",
+    "nickname": "Testy McTestface",
+    "date" : new Date(Date.now()),
+    "game": [
+      {
+        clue: "The place you love to hate!",
+        code: {
+          text: "classroom",
+          lat:30.28229959,
+          lng:-97.7363127
+        }
+      },
+      {
+        clue: "Like Amazon, but free!",
+        code: {
+          text: "Library",
+          lat: 30.265936,
+          lng: -97.751717
+        }
       }]
   },
   {
     "title": "Find my other sock!",
+    "nickname": "Testy McTestface",
     "date" : new Date(Date.now()),
-    "cluecode": [
+    "game": [
       {
-        clue: "Like Amazon, but free!",
-        code: "Library"
+        clue: "They say it's where you lay your head",
+        code: {
+          text: "Home",
+          lat: 30.21215,
+          lng:-97.83238
+        }
       },
       {
         clue: "half river, half swimming pool",
-        code: "Barton Springs"
+        code: {
+          text: "Barton Springs",
+          lat:30.264005, 
+          lng:-97.771028
+        }
       }]
   }
 ];
