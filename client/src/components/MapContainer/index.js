@@ -28,7 +28,7 @@ export class MapContainer extends Component {
 
   render() {
     return (
-      <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
+      <CurrentLocation grabCoords={this.props.grabCoords} centerAroundCurrentLocation google={this.props.google}>
         <Marker onClick={this.onMarkerClick} name={'current location'} />
         <InfoWindow
           marker={this.state.activeMarker}

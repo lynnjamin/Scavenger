@@ -46,6 +46,12 @@ export class CurrentLocation extends React.Component {
     }
   }
 
+  handleMapClick(latlng) {
+    console.log(latlng);
+    this.props.grabCoords(latlng);
+    }
+
+
   loadMap() {
     if (this.props && this.props.google) {
       // checks if google is available
@@ -69,6 +75,13 @@ export class CurrentLocation extends React.Component {
       );
       // maps.Map() is constructor that instantiates the map
       this.map = new maps.Map(node, mapConfig);
+     // Listen on click to get ControlPosition
+     this.map.addListener('click', (e) => {
+      const the_click =  { lat: e.latLng.lat(), lng: e.latLng.lng()};
+      console.log(the_click);
+      this.handleMapClick(the_click);
+    });
+
     }
   }
 

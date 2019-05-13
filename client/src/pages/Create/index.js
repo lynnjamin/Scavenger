@@ -63,11 +63,14 @@ class InputForm extends React.Component {
     this.state = {
       title: "",
       clue: [{ value: "" }],
-      code: [
-        { text: "", lat: "", lng: "" }]
+      code: [{ value: "" }],
+      clickLatLng: {}
     };
   }
 
+  propFunction = (obj) => {
+    this.setState({clickLatLng : obj})
+  }
   // componentDidMount(){
   //   axios.get("/api/users/" + window.localStorage.sub)
   //   .then(response => {
@@ -131,7 +134,7 @@ class InputForm extends React.Component {
     const game = []
     for(let i =0; i < this.state.clue.length; i++){
       let clue = this.state.clue[i].value;
-      let code = this.state.code[i].text;
+      let code = this.state.code[i].value;
       game.push({ clue: clue, code: code})
     }
     axios.request({ 
@@ -212,7 +215,7 @@ class InputForm extends React.Component {
                     />  
                   </MuiThemeProvider>
 
-                  <MapContainer>
+                  <MapContainer grabCoords={this.propFunction}>
                     Map goes here
                   </MapContainer>
               
