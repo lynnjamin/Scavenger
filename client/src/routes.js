@@ -8,6 +8,7 @@ import history from './history';
 import Create from "./pages/Create";
 import Play from "./pages/Play";
 import ChooseGame from "./pages/ChooseGame";
+import Win from "./pages/Win";
 
 import NavigationBar from "./components/NavigationBar";
 
@@ -24,6 +25,7 @@ export const makeMainRoutes = () => {
     
       <Router history={history}>
         <div>
+          <NavigationBar auth={auth} history={history} />
           {/* <Route path="/" render={(props) => <NavigationBar auth={auth} {...props} />} /> */}
           <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
@@ -34,6 +36,9 @@ export const makeMainRoutes = () => {
           <Route exact path="/create" render={(props) => <Create auth={auth} {...props} />} />
           <Route exact path="/play/:id" render={(props) => <Play auth={auth} {...props} />} />
           <Route exact path="/choosegame" render={(props) => <ChooseGame auth={auth} {...props} />} />
+
+          {/* temporary route to work on win page */}
+          <Route exact path="/win" render={(props) => <Win auth={auth} {...props} />} />
 
         </div>
       </Router>

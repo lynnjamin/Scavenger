@@ -1,10 +1,18 @@
+form {
+    line-height: 0.0;
+}
+
 h1{
     font-family: 'Permanent Marker', cursive;
     text-shadow: 2px 0 #808080, 0 2px #808080, 2px 0 #808080, 0 2px #808080;
 }
-h5{
+.createTitle {
     font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    margin-bottom: -5px;
+    margin-top: 10px;
 }
+
 .contentContainer{
     height:auto;
     padding: 30px;

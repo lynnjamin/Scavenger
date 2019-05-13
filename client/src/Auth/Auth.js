@@ -76,14 +76,15 @@ export default class Auth {
   // });
 
     axios.put("/api/users/:id", userData)
-    .then((response) => {
-      console.log(response);
+    .then(() => {
+      history.replace('/home');
     }).catch((error) => {
         console.log(error);
+        history.replace('/home');
     });
 
     // navigate to the home route
-    history.replace('/home');
+    // history.replace('/home');
   } 
 
   renewSession() {

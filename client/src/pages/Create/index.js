@@ -1,8 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import axios from 'axios';
 import history from '../../history';
-import NavigationBar from '../../components/NavigationBar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -33,19 +31,30 @@ const theme = createMuiTheme({
   palette: {
     primary: { 500: '#093E0A' }
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 const theme2 = createMuiTheme({
   palette: {
     primary: { main: '#9e9d24' }
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 const theme3 = createMuiTheme({
   palette: {
-    primary: { main: '#3e2723' }
+    primary: { main: '#1b5e20' }
   },
-});class InputForm extends React.Component {
+  typography: {
+    useNextVariants: true,
+  },
+});
+
+class InputForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -55,17 +64,17 @@ const theme3 = createMuiTheme({
     };
   }
 
-    componentDidMount(){
-    axios.get("/api/users/" + window.localStorage.sub)
-    .then(response => {
-      console.log(response)
-    })
-  }
+  // componentDidMount(){
+  //   axios.get("/api/users/" + window.localStorage.sub)
+  //   .then(response => {
+  //     console.log(response)
+  //   })
+  // }
 
 
   handleSubmit = e => {
     e.preventDefault();
-    const { title, clue, code } = this.state;
+    // const { title, clue, code } = this.state;
   };
 
   // Title Handler
@@ -132,81 +141,80 @@ const theme3 = createMuiTheme({
         game: game,
         createdBy: window.localStorage.sub,
         nickname: response.data[0].nickname
-     };
+      };
       axios.request({ 
-      method: 'post',
-      url: "/api/games",
-      data: newGame,
-    }).then((response) => {
-      console.log(response.config.data);
-      history.replace('/home');
-    }).catch((error) => {
-        console.log(error);
-    });
-  })
+        method: 'post',
+        url: "/api/games/",
+        data: newGame,
+      }).then((response) => {
+        console.log("here: ", response.config.data);
+        history.replace('/home');
+      }).catch((error) => {
+          console.log(error);
+      });
+    })
   }
 
   render() {
     return (
     <div>
-
       <div className="container">
-      <NavigationBar auth={this.props.auth}history={this.props.history}/>
       <div className="createGame">
         <h1>Create a Game</h1>
       </div>
         <div className="createContainer">
-          <h5>Title</h5>
-          <form onSubmit={this.handleSubmit}>
-          <MuiThemeProvider theme={theme}>
-          <TextField
-            required
-            id="filled-required"
-            label="Required"
-            className={this.props.classes.root}
-            margin="normal"
-            variant="filled"
-          />
-          </  MuiThemeProvider>
-         
-          <br/><br/>
-            <h5>Clue and Code</h5>
-            {this.state.clue.map((clue, idx) => (
-              <div className="clueinput">
-              <MuiThemeProvider theme={theme}>
-                <TextField
-                  id="outlined-textarea"
-                  label="Enter clue here"
-                  multiline
-                  className={this.props.classes.root}
-                  margin="normal"
-                  variant="filled"
-                  placeholder={`Clue #${idx + 1}`}
-                  value={this.state.clue[idx].value}
-                  onChange={this.handleClueChange(idx)}
-                  required
-                />
+        <div className="createTitle">Title</div>
+          <form onSubmit={this.saveGame} className="form">
+            <MuiThemeProvider theme={theme}>
+            <TextField
+              required
+              id="filled-required"
+              label="Required"
+              className={this.props.classes.root}
+              margin="normal"
+              variant="filled"
+              onChange={this.handleTitleChange}
+            />
+            </  MuiThemeProvider>
+          
+            <br/><br/>
+              <h5>Clue and Code</h5>
+              {this.state.clue.map((clue, idx) => (
+                <div key={idx} className="clueinput">
+                  <MuiThemeProvider theme={theme}>
+                    <TextField
+                      id="outlined-textarea"
+                      label="Enter clue here"
+                      multiline
+                      className={this.props.classes.root}
+                      margin="normal"
+                      variant="filled"
+                      placeholder={`Clue #${idx + 1}`}
+                      value={this.state.clue[idx].value}
+                      onChange={this.handleClueChange(idx)}
+                      required
+                    />
 
-                <TextField
-                  id="outlined-textarea"
-                  label="Enter code here"
-                  multiline
-                  className={this.props.classes.root}
-                  margin="normal"
-                  variant="filled"
-                  placeholder={`Code #${idx + 1}`}
-                  value={this.state.code[idx].value}
-                  onChange={this.handleCodeChange(idx)}
-                  required
-                />  
-              </MuiThemeProvider>
-            
+                    <TextField
+                      id="outlined-textarea"
+                      label="Enter code here"
+                      multiline
+                      className={this.props.classes.root}
+                      margin="normal"
+                      variant="filled"
+                      placeholder={`Code #${idx + 1}`}
+                      value={this.state.code[idx].value}
+                      onChange={this.handleCodeChange(idx)}
+                      required
+                    />  
+                  </MuiThemeProvider>
+              
 
-                <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
-                <DeleteIcon />
-                </IconButton>
-              </div>
-            ))}
+                  <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
+                  <DeleteIcon />
+                  </IconButton>
+                </div>
+              ))}
 
 
               <MuiThemeProvider theme={theme2}>
@@ -222,8 +230,8 @@ const theme3 = createMuiTheme({
               </MuiThemeProvider>
 
               <MuiThemeProvider theme={theme3}>
-                  <Button onClick={this.onSave} variant="contained" color="primary" className={this.props.classes.submitButton}>
-                    Send
+                  <Button onClick={this.saveGame} variant="contained" color="primary" className={this.props.classes.submitButton}>
+                    Submit
                     <Icon className="newIcon">send</Icon>
                   </Button>
               </MuiThemeProvider>

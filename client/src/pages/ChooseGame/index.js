@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./styles.css";
-import NavigationBar from '../../components/NavigationBar';
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
@@ -41,12 +40,10 @@ class ChooseGame extends Component {
   render() {
     return (
       <div>
-        <div className="container">
-          <div>
-            <NavigationBar auth={this.props.auth} history={this.props.history} />
-          </div>
-          <div className="contentContainer">
-            <h1>Choose a Scavenger Hunt</h1>
+        <div className="container contentContainer">
+            <h1>Hunt</h1>
+          <div className="mainChooseGame">
+          <div className="chooseGameTitle">Choose a game by other players</div>
             <Container fluid>
               <Row>
                 <Col size="md-12">
@@ -57,7 +54,7 @@ class ChooseGame extends Component {
                             <div className="chooseGameFlexBox">
                               <Link to={"/play/" + game._id}>
                               
-                                <div className="chooseGameTitle">
+                                <div className="pickGameTitle">
                                   {game.title} 
                                 </div>
                               </Link>
@@ -73,7 +70,7 @@ class ChooseGame extends Component {
                         ))}
                       </List>
                     ) : (
-                        <h3>No Results to Display</h3>
+                        <h3>There are no games! Go create one!</h3>
                       )}
                 </Col>
               </Row>
