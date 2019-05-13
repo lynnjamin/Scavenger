@@ -21,6 +21,10 @@ const styles = {
   },
   submitButton: {
     marginTop: "25px"
+  },
+  locationButton: {
+    marginLeft: "10px",
+    marginTop: "25px"
   }
 };
 
@@ -50,6 +54,16 @@ const theme3 = createMuiTheme({
     useNextVariants: true,
   },
 });
+
+const theme4 = createMuiTheme({
+  palette: {
+    primary: { main: '#880e4f' }
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
+
 class Play extends Component {
   state = {
     // game:{}
@@ -192,16 +206,16 @@ class Play extends Component {
                   </MuiThemeProvider>
 
                   <MuiThemeProvider theme={theme3}>
-                    <Button onClick={this.handleSubmitCode} variant="contained" color="primary" className={this.props.classes.submitButton}>
+                  <Button onClick={this.handleSubmitCode} variant="contained" color="primary" className={this.props.classes.submitButton}>
                       Submit
                   <Icon className="newIcon">send</Icon>
                     </Button>
                   </MuiThemeProvider>
                   {/* ==========================I inserted the location button here================================== */}
-                  <MuiThemeProvider theme={theme3}>
-                    <button onClick={this.handleSubmitLocation}>
-                      I'm here.
-              </button>
+                  <MuiThemeProvider theme={theme4}>
+                    <Button onClick={this.handleSubmitLocation} variant="contained" color="primary" className={this.props.classes.locationButton}>
+                      I'm here!
+                    </Button>
                   </MuiThemeProvider>
 
                 </form>

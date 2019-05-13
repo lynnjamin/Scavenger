@@ -63,7 +63,8 @@ class InputForm extends React.Component {
     this.state = {
       title: "",
       clue: [{ value: "" }],
-      code: [{ value: "" }]
+      code: [
+        { text: "", lat: "", lng: "" }]
     };
   }
 
@@ -130,7 +131,7 @@ class InputForm extends React.Component {
     const game = []
     for(let i =0; i < this.state.clue.length; i++){
       let clue = this.state.clue[i].value;
-      let code = this.state.code[i].value;
+      let code = this.state.code[i].text;
       game.push({ clue: clue, code: code})
     }
     axios.request({ 
