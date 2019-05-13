@@ -69,6 +69,7 @@ class Play extends Component {
   // When this component mounts, grab the game with the _id of this.props.match.params.id
   // e.g. localhost:3000/game/599dcb67f0f16317844583fc
   componentDidMount() {
+    console.log("what is this?", this.props);
     API.getGame(this.props.match.params.id)
       .then(res => {
         console.log(res.data);
