@@ -22,35 +22,37 @@ class Home extends Component {
     const { isAuthenticated } = this.props.auth;
     const {handleAuthentication} = this.props.auth.handleAuthentication;
     return (
-      <div className="container">
-        
-        {
-          isAuthenticated() && (
-            <div>
+      <div>
+        <div className="container">
+        <NavigationBar auth={this.props.auth}history={this.props.history}/>
+          {
+            isAuthenticated() && (
+          
               <div>
-                <NavigationBar auth={this.props.auth}history={this.props.history}/>
-                <CreatePlay />
+                <div>
+                  <CreatePlay />
+                </div>
               </div>
-            </div>
-            )
-            
-        }
-        {
-          !isAuthenticated() && (
-            <div className="loggedOutContainer">
-              <h1 className="titleh1">Scavenger</h1>
-              <h4>
-                You are not logged in! Please{' '}
-                <a style={{ cursor: 'pointer', color:'#eeeeee' }}
-                  
-                  onClick={this.login.bind(this)}>
-                  Log In
-                </a>
-                {' '}to continue.
-              </h4>
-            </div>
-            )
-        }
+              )
+              
+          }
+          {
+            !isAuthenticated() && (
+              <div className="loggedOutContainer">
+                <h1 className="titleh1">Scavenger</h1>
+                <h4>
+                  You are not logged in! Please{' '}
+                  <a style={{ cursor: 'pointer', color:'#eeeeee' }}
+                    
+                    onClick={this.login.bind(this)}>
+                    Log In
+                  </a>
+                  {' '}to continue.
+                </h4>
+              </div>
+              )
+          }
+        </div>
       </div>
     );
   }
