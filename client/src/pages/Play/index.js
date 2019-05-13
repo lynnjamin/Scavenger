@@ -69,6 +69,7 @@ class Play extends Component {
   // When this component mounts, grab the game with the _id of this.props.match.params.id
   // e.g. localhost:3000/game/599dcb67f0f16317844583fc
   componentDidMount() {
+    console.log("what is this?", this.props);
     API.getGame(this.props.match.params.id)
       .then(res => {
         console.log(res.data);
@@ -80,8 +81,8 @@ class Play extends Component {
   }
   handleSubmitCode = (event) => {
     event.preventDefault();
-    if (this.state.answer === this.state.cluecode[this.state.codesolved].code) {
-      console.log("what is this? :", this.state.cluecode[this.state.codesolved].code)
+    if (this.state.answer.toLowerCase().trim() === this.state.cluecode[this.state.codesolved].code.toLowerCase().trim()) {
+      console.log("answer :", this.state.cluecode[this.state.codesolved].code)
       console.log("something: ", this.state.codesolved);
       this.setState({codesolved: this.state.codesolved + 1, answer: "", wrongGuess: false});
     //  this.setState.codeSolved = this.state.codesolved + 1;
