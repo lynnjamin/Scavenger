@@ -97,14 +97,20 @@ class Play extends Component {
             lng: coords.longitude
           }
         });
+        this.handleAnswer({
+          currentLocation: {
+            lat: coords.latitude,
+            lng: coords.longitude
+          }
+        });
       });
-      this.handleAnswer();
+      
     }
   }
-    handleAnswer = () => {
+    handleAnswer = (userLocation) => {
       //Set the latitude and longitude for comparison
-      const lat1 = this.state.currentLocation.lat;
-      const lon1 = this.state.currentLocation.lng;
+      const lat1 = userLocation.currentLocation.lat;
+      const lon1 = userLocation.currentLocation.lng;
       const lat2 = this.state.cluecode[this.state.codesolved].code.lat;
       const lon2 = this.state.cluecode[this.state.codesolved].code.lng;
       console.log(lat1, lon1, lat2, lon2);
