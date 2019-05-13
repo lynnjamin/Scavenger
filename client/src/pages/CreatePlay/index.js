@@ -8,18 +8,24 @@ import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/
 const styles = {
   huntStyleButton: {
     margin: "20px",
-}
+  }
 };
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#5d4037' }
+    primary: { main: '#00897b' }
+  },
+  typography: {
+    useNextVariants: true,
   },
 });
 
 const theme2 = createMuiTheme({
   palette: {
-    primary: { main: '#9e9d24' }
+    primary: { main: '#d84315' }
+  },
+  typography: {
+    useNextVariants: true,
   },
 });
 
@@ -33,21 +39,19 @@ class CreatePlay extends Component {
         </header>
         <p className="def">Create a Scavenger hunt of your own or play one that's already been created. </p>
         <Link to="/create" className="createLink" style={{ textDecoration: 'none' }}>
-        <MuiThemeProvider theme={theme}>
-        <Button variant="contained" color="primary" className="createButton">
-        Create 
-        </Button>
-        </MuiThemeProvider>
+          <MuiThemeProvider theme={theme}>
+            <Button variant="contained" color="primary" className="createButton">
+            Create 
+            </Button>
+          </MuiThemeProvider>
         </Link>
         <br/>
         <Link to="/chooseGame" className="playLink" style={{ textDecoration: 'none' }}>
-        <MuiThemeProvider theme={theme2}>
-
-        <Button variant="contained" color="primary" className={this.props.classes.huntStyleButton}>
-          Hunt
-        </Button>
-        </MuiThemeProvider>
-
+          <MuiThemeProvider theme={theme2}>
+            <Button variant="contained" color="primary" className={this.props.classes.huntStyleButton}>
+              Hunt
+            </Button>
+          </MuiThemeProvider>
         </Link>
       </div>
     );

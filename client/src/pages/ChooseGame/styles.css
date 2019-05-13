@@ -1,14 +1,23 @@
 h1{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-family: 'Permanent Marker', cursive;
     text-shadow: 2px 0 #808080, 0 2px #808080, 2px 0 #808080, 0 2px #808080;
 
+}
+h3{
+    font-family: 'Roboto Slab', serif;
+}
+.chooseGameTitle {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: -10px;
 }
 .playLink{
     color:#eeeeee;
 }
 
-.chooseGameTitle {
+.pickGameTitle {
     font-weight: 600;
     font-size: 20px;
     font-family: 'Roboto Slab', serif;
@@ -33,4 +42,12 @@ h1{
     width: 95px;
     margin-top: auto !important;
     margin-bottom: auto !important;
+}
+
+.mainChooseGame {
+    background: #78909c;
+    border: 2px #616159 solid;
+    border-radius: 10px;
+    margin: 30px 70px;
+    padding: 35px 20px 35px 20px;
 }
