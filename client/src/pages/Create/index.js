@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import axios from 'axios';
 import history from '../../history';
 import Button from '@material-ui/core/Button';
@@ -10,6 +10,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import "./styles.css";
+//setting up the maps imports
+import React, { Component } from "react";
+import MapContainer from '../../components/MapContainer';
 
 const styles = {
   root: {
@@ -60,7 +63,8 @@ class InputForm extends React.Component {
     this.state = {
       title: "",
       clue: [{ value: "" }],
-      code: [{ value: "" }]
+      code: [
+        { text: "", lat: "", lng: "" }]
     };
   }
 
@@ -128,7 +132,7 @@ class InputForm extends React.Component {
     const game = []
     for(let i =0; i < this.state.clue.length; i++){
       let clue = this.state.clue[i].value;
-      let code = this.state.code[i].value;
+      let code = this.state.code[i].text;
       game.push({ clue: clue, code: code})
     }
     axios.request({ 
@@ -208,6 +212,10 @@ class InputForm extends React.Component {
                       required
                     />  
                   </MuiThemeProvider>
+
+                  <MapContainer>
+                    Map goes here
+                  </MapContainer>
               
 
                   <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">

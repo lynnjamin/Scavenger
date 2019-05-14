@@ -1,7 +1,8 @@
 import history from '../history';
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables';
 import axios from "axios";
+
+const origin = window.location.origin;
 
 export default class Auth {
   accessToken;
@@ -9,9 +10,9 @@ export default class Auth {
   expiresAt;
 
   auth0 = new auth0.WebAuth({
-    domain: AUTH_CONFIG.domain,
-    clientID: AUTH_CONFIG.clientId,
-    redirectUri: AUTH_CONFIG.callbackUrl,
+    domain: 'lynnjamint.auth0.com',
+    clientID: 'cwVXg8Y39wZ6yUNJSnaOdJ0bCwMuf301',
+    redirectUri: origin + '/callback',
     responseType: 'token id_token',
     audience: 'https://lynnjamint.auth0.com/userinfo',
     scope: 'openid profile'
