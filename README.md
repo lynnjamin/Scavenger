@@ -1,7 +1,12 @@
 # scAvenger Assemble
+<p align="center">
+<img src="https://i.imgur.com/WxTAUCM.png" alt="scAvenger Team")
+</p>
+
 scAvenger Assemble is an app for playing a digital scavenger hunt style game with the use of GPS coordinates and created clues/instructions and mysteries. 
 
 Check out our deployed version! (https://scavenger19.herokuapp.com/)
+
 Github page - (https://github.com/lynnjamin/Scavenger)
 
 ## The Motivation
@@ -20,6 +25,6 @@ To create the possibilities for local adventures. A series of challenges and rid
 ```
 
 ## Team
-[Andrew Osborn](https://github.com/Andosbor)
-[Ben Queener](https://github.com/BenQueener)
-[Lynn Tang](https://github.com/lynnjamin)
+- [Andrew Osborn](https://github.com/Andosbor)
+- [Ben Queener](https://github.com/BenQueener)
+- [Lynn Tang](https://github.com/lynnjamin)

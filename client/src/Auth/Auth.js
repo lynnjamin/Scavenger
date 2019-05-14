@@ -77,8 +77,6 @@ export default class Auth {
         history.replace('/home');
     });
 
-    // navigate to the home route
-    // history.replace('/home');
   } 
 
   renewSession() {
