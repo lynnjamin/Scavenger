@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from 'react-bootstrap';
+import logo from '../../assets/landingimage.png';
 import "./styles.css";
 
 class Landing extends Component {
@@ -35,7 +36,6 @@ class Landing extends Component {
           <p>A build your own scavenger hunt app</p>
         </div>
         <div className="landingLogin">
-        {/* buttons made with react-bootstrap don't currently go to the center of the page */}
         {
               !isAuthenticated() && (
                   <Button
@@ -73,7 +73,7 @@ class Landing extends Component {
             }
           
         </div>
-        
+        <img src={logo} alt="scAvengers" />
       </div>
     );
   }

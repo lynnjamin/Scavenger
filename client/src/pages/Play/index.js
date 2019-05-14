@@ -181,14 +181,13 @@ class Play extends Component {
           <div className="container">
             <div className="contentContainer">
               <h1>Follow the Clue</h1>
-              <h1>Guess the Code!</h1>
 
               <div className="gameBox">
                 <div className="titleOfGame">
                   {this.state.title}
                 </div>
                 <div className="playClue">
-                  {this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : ""}
+                  <i className="clueIndicator">Clue: </i>{this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : ""}
                 </div>
                 {
                   this.state.wrongGuess

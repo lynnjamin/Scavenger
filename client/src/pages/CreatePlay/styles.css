@@ -1,9 +1,44 @@
 .createButton{
-    width:100px;
+    float:right;
+    opacity:auto;
+    transition:0.5s ease;
 }
+/* .createButton:hover .createStone{
+    opacity:0.1;
+} */
+
 .huntButton{
-    width:100px;
-    
+    float:left;
+}
+.createStone{
+    height:25vh;
+    width:auto;
+    z-index:1;
+}
+.huntStone{
+    height:25vh;
+    width:auto;
+    z-index:1;
+}
+.createText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:2;
+    font-family: 'Roboto Slab', serif;
+    text-shadow: 2px 2px 2px rgb(255, 255, 255);
+
+}
+.huntText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:2;
+    font-family: 'Roboto Slab', serif;
+    text-shadow: 2px 2px 2px rgb(255, 255, 255);
+
 }
 .createLink{
     color:#eeeeee;
@@ -18,4 +53,15 @@
 
 .def {
     font-family: 'Roboto Slab', serif;
+}
+@media only screen and (max-width: 460px) {
+
+    .createArea{
+        padding:0px;
+
+    }
+    .huntArea{
+        padding:0px;
+    }
+
 }

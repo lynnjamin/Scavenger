@@ -8,7 +8,6 @@ import history from './history';
 import Create from "./pages/Create";
 import Play from "./pages/Play";
 import ChooseGame from "./pages/ChooseGame";
-import Win from "./pages/Win";
 import NavigationBar from "./components/NavigationBar";
 
 
