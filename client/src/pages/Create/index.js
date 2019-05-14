@@ -11,8 +11,10 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import "./styles.css";
 //setting up the maps imports
+import React from "react";
 import MapContainer from '../../components/MapContainer';
 
+// CSS styling to override materialize
 const styles = {
   root: {
     backgroundColor: "white",
@@ -86,7 +88,6 @@ class InputForm extends React.Component {
     this.setState({ title: e.target.value });
   };
 
-
   // Change Handler
   handleClueChange = idx => e => {
     const newClue = this.state.clue.map((clue, sidx) => {
@@ -96,44 +97,24 @@ class InputForm extends React.Component {
     this.setState({ clue: newClue });
   };
 
-
   handleCodeChange = idx => e => {
     const newCode = this.state.code.map((code, sidx) => {
       if (idx !== sidx) return code;
-      return { ...code, value: e.target.value };
+      return { ...code, text: e.target.value };
     });
     this.setState({ code: newCode });
   };
 
-
-  // Add Handler
+  // Add inputs
   handleAddClueandCode = () => {
-    //check to see whether the code or lat long was filled and then set that 
-    //possible bug, you click the map, save a location but then want to enter a code instead 
-    //if the useLatLng flag is thrown then we save the clue, latitide and longitude
-    if (this.state.useLatLng) {
-      console.log("The handleAddClueCode threw the true about the useLatLng flag")
-      this.setState(
-        {
-          clue: this.state.clue.concat([{ value: "" }]),
-          //store the {Lat: 000, Lng: 000} object in the array
-          code: this.state.clickLatLng.concat([{ value: "" }]),
-          //turn off the flag
-          useLatLng: false
-        });
-    } else {
-      console.log("Just the else");
-      this.setState(
-        {
-          clue: this.state.clue.concat([{ value: "" }]),
-          code: this.state.code.concat([{ value: "" }])
-        });
-    }
-
-
+    this.setState(
+      {
+        clue: this.state.clue.concat([{ value: "" }]),
+        code: this.state.code.concat([{ text: "", lat: "", lng: "" }])
+      });
   };
 
-  // Remove Handler
+  // Delete input
   handleRemoveClueAndCode = idx => () => {
     this.setState({
       clue: this.state.clue.filter((s, sidx) => idx !== sidx),
@@ -141,9 +122,7 @@ class InputForm extends React.Component {
     });
   };
 
-  //////////////////////
-  // POST to database //
-  //////////////////////
+  // GET and POST to database
   saveGame = e => {
     e.preventDefault();
     const title = this.state.title;
@@ -202,68 +181,97 @@ class InputForm extends React.Component {
           });
         })
     }
-  }
+    for (let i = 0; i < this.state.clue.length; i++) {
+      let clue = this.state.clue[i].value;
+      let code = this.state.code[i];
+      game.push({ clue: clue, code: code })
+    }
+  }  
+    //   // grabs data of current user ID
+    //   axios.request({ 
+    //     method: 'get',
+    //     url: "/api/users/" + window.localStorage.sub
+    //   })
+    //   .then(function (response) {
+    //     const newGame = {
+    //       title: title,
+    //       game: game,
+    //       createdBy: window.localStorage.sub,
+    //       nickname: response.data[0].nickname
+    //     };
+    //     axios.request({ 
+    //       method: 'post',
+    //       url: "/api/games/",
+    //       data: newGame,
+    //     }).then((response) => {
+    //       history.replace('/home');
+    //     }).catch((error) => {
+    //         console.log(error);
+    //     });
+    //   })
+    // }
 
-  render() {
-    return (
-    <div>
-      <div className="container">
-      <div className="createGame">
-        <h1>Create a Game</h1>
-      </div>
-        <div className="createContainer">
-        <div className="createTitle">Title</div>
-          <form onSubmit={this.saveGame} className="form">
-            <MuiThemeProvider theme={theme}>
-            <TextField
-              required
-              id="filled-required"
-              label="Required"
-              className={this.props.classes.root}
-              margin="normal"
-              variant="filled"
-              onChange={this.handleTitleChange}
-            />
-            </  MuiThemeProvider>
-          
-            <br/><br/>
-              <h5>Clue and Code</h5>
-              {this.state.clue.map((clue, idx) => (
-                <div key={idx} className="clueinput">
-                  <MuiThemeProvider theme={theme}>
-                    <TextField
-                      id="outlined-textarea"
-                      label="Enter clue here"
-                      multiline
-                      className={this.props.classes.root}
-                      margin="normal"
-                      variant="filled"
-                      placeholder={`Clue #${idx + 1}`}
-                      value={this.state.clue[idx].value}
-                      onChange={this.handleClueChange(idx)}
-                      required
-                    />
+    render() {
+      return (
+        <div>
+          <div className="container">
+            <div className="createGame">
+              <h1>Create a Game</h1>
+            </div>
+            <div className="createContainer">
+              <div className="createTitle">Title</div>
 
-                    <TextField
-                      id="outlined-textarea"
-                      label="Enter code here"
-                      multiline
-                      className={this.props.classes.root}
-                      margin="normal"
-                      variant="filled"
-                      placeholder={`Code #${idx + 1}`}
-                      value={this.state.code[idx].value}
-                      onChange={this.handleCodeChange(idx)}
-                      required
-                    />  
-                  </MuiThemeProvider>
+              <form onSubmit={this.saveGame} className="form">
+                <MuiThemeProvider theme={theme}>
+                  <TextField
+                    required
+                    id="filled-required"
+                    label="Required"
+                    className={this.props.classes.root}
+                    margin="normal"
+                    variant="filled"
+                    onChange={this.handleTitleChange}
+                  />
+                </ MuiThemeProvider>
 
-                <div className="googleMapCreate">
-                  <MapContainer grabCoords={this.propFunction}>
-                    Map goes here
+                <br /><br />
+                <h5>Clue and Code</h5>
+                {this.state.clue.map((clue, idx) => (
+                  <div key={idx} className="clueinput">
+                    <MuiThemeProvider theme={theme}>
+                      <TextField
+                        id="outlined-textarea"
+                        label="Enter clue here"
+                        multiline
+                        className={this.props.classes.root}
+                        margin="normal"
+                        variant="filled"
+                        placeholder={`Clue #${idx + 1}`}
+                        value={this.state.clue[idx].value}
+                        onChange={this.handleClueChange(idx)}
+                        required
+                      />
+
+                      <TextField
+                        id="outlined-textarea"
+                        label="Enter code here"
+                        multiline
+                        className={this.props.classes.root}
+                        margin="normal"
+                        variant="filled"
+                        placeholder={`Code #${idx + 1}`}
+                        value={this.state.code[idx].value}
+                        onChange={this.handleCodeChange(idx)}
+                        required
+                      />
+                    </MuiThemeProvider>
+
+                    <div className="googleMapCreate">
+                      <MapContainer grabCoords={this.propFunction}>
+                        Map goes here
                   </MapContainer>
-                </div>
-              
+                    </div>
+
 
 
                     <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
