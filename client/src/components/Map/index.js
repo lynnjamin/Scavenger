@@ -78,7 +78,7 @@ export class CurrentLocation extends React.Component {
      // Listen on click to get ControlPosition
      this.map.addListener('click', (e) => {
       const the_click =  { lat: e.latLng.lat(), lng: e.latLng.lng()};
-      console.log(the_click);
+      //console.log(the_click);
       this.handleMapClick(the_click);
     });
 
@@ -131,8 +131,8 @@ export default CurrentLocation;
 CurrentLocation.defaultProps = {
   zoom: 14,
   initialCenter: {
-    lat: -1.2884,
-    lng: 36.8233
+    lat: 30.2672,
+    lng: -97.7431
   },
   centerAroundCurrentLocation: false,
   visible: true
