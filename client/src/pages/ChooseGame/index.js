@@ -58,7 +58,7 @@ class ChooseGame extends Component {
                                 </div>
                               </Link>
                               <div className="createdDiv">
-                                created on <Moment format="DD/MM/YYYY">{game.date}</Moment> by {game.nickname}
+                                created on <Moment format="MM/DD/YYYY">{game.date}</Moment> by {game.nickname}
                               </div>
                             </div>
                             {

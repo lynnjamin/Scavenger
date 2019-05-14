@@ -96,6 +96,7 @@ class InputForm extends React.Component {
     this.setState({ clue: newClue });
   };
 
+
   handleCodeChange = idx => e => {
     const newCode = this.state.code.map((code, sidx) => {
       if (idx !== sidx) return code;
