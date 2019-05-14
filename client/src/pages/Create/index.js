@@ -95,6 +95,7 @@ class InputForm extends React.Component {
     this.setState({ clue: newClue });
   };
 
+
   handleCodeChange = idx => e => {
     const newCode = this.state.code.map((code, sidx) => {
       if (idx !== sidx) return code;
@@ -200,63 +201,67 @@ class InputForm extends React.Component {
         })
     }
   }
-    render() {
-      return (
-        <div>
-          <div className="container">
-            <div className="createGame">
-              <h1>Create a Game</h1>
-            </div>
-            <div className="createContainer">
-              <div className="createTitle">Title</div>
-              <form onSubmit={this.saveGame} className="form">
-                <MuiThemeProvider theme={theme}>
-                  <TextField
-                    required
-                    id="filled-required"
-                    label="Required"
-                    className={this.props.classes.root}
-                    margin="normal"
-                    variant="filled"
-                    onChange={this.handleTitleChange}
-                  />
-                </  MuiThemeProvider>
 
-                <br /><br />
-                <h5>Clue and Code</h5>
-                {this.state.clue.map((clue, idx) => (
-                  <div key={idx} className="clueinput">
-                    <MuiThemeProvider theme={theme}>
-                      <TextField
-                        id="outlined-textarea"
-                        label="Enter clue here"
-                        multiline
-                        className={this.props.classes.root}
-                        margin="normal"
-                        variant="filled"
-                        placeholder={`Clue #${idx + 1}`}
-                        value={this.state.clue[idx].value}
-                        onChange={this.handleClueChange(idx)}
-                        required
-                      />
+  render() {
+    return (
+    <div>
+      <div className="container">
+      <div className="createGame">
+        <h1>Create a Game</h1>
+      </div>
+        <div className="createContainer">
+        <div className="createTitle">Title</div>
+          <form onSubmit={this.saveGame} className="form">
+            <MuiThemeProvider theme={theme}>
+            <TextField
+              required
+              id="filled-required"
+              label="Required"
+              className={this.props.classes.root}
+              margin="normal"
+              variant="filled"
+              onChange={this.handleTitleChange}
+            />
+            </  MuiThemeProvider>
+          
+            <br/><br/>
+              <h5>Clue and Code</h5>
+              {this.state.clue.map((clue, idx) => (
+                <div key={idx} className="clueinput">
+                  <MuiThemeProvider theme={theme}>
+                    <TextField
+                      id="outlined-textarea"
+                      label="Enter clue here"
+                      multiline
+                      className={this.props.classes.root}
+                      margin="normal"
+                      variant="filled"
+                      placeholder={`Clue #${idx + 1}`}
+                      value={this.state.clue[idx].value}
+                      onChange={this.handleClueChange(idx)}
+                      required
+                    />
 
-                      <TextField
-                        id="outlined-textarea"
-                        label="Enter code here"
-                        multiline
-                        className={this.props.classes.root}
-                        margin="normal"
-                        variant="filled"
-                        placeholder={`Code #${idx + 1}`}
-                        value={this.state.code[idx].value}
-                        onChange={this.handleCodeChange(idx)}
-                        required
-                      />
-                    </MuiThemeProvider>
+                    <TextField
+                      id="outlined-textarea"
+                      label="Enter code here"
+                      multiline
+                      className={this.props.classes.root}
+                      margin="normal"
+                      variant="filled"
+                      placeholder={`Code #${idx + 1}`}
+                      value={this.state.code[idx].value}
+                      onChange={this.handleCodeChange(idx)}
+                      required
+                    />  
+                  </MuiThemeProvider>
 
-                    <MapContainer grabCoords={this.propFunction}>
-                      Map goes here
+                <div className="googleMapCreate">
+                  <MapContainer>
+                    Map goes here
                   </MapContainer>
+                </div>
+              
 
 
                     <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">

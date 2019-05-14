@@ -8,6 +8,8 @@ import history from './history';
 import Create from "./pages/Create";
 import Play from "./pages/Play";
 import ChooseGame from "./pages/ChooseGame";
+import Win from "./pages/Win";
+
 import NavigationBar from "./components/NavigationBar";
 
 const auth = new Auth();
@@ -60,12 +62,16 @@ export const makeMainRoutes = () => {
               }}
             />
 
+            {/* temporary route to work on win page */}
+            <Route exact path="/win" render={(props) => <Win auth={auth} {...props} />} />
+
             <Route render={() =>
               <Redirect to="/" />
             }
             />
 
           </Switch>
+
 
         </div>
       </Router>

@@ -33,7 +33,7 @@ class NavigationBar extends Component {
     return (
       <div className="navigation">
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Link to="/"className="backToStart">Scavenger <i className="fas fa-search"></i></Link>
+          <Link to="/"className="backToStart">Sc<img className="avengersLogo" src="http://www.stickpng.com/assets/images/5842a4f5a6515b1e0ad75af6.png" alt="A"/>vengers <i className="fas fa-search"></i></Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
