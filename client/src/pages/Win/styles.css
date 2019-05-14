@@ -2,12 +2,12 @@
     height:60vh;
 }
 .gameCompleted{
-    margin-top:0%;
+    margin-top:0;
 }
 #triangle-down {
     margin:0 auto;
-    width:300px;
-    height:250px;
+    width:250px;
+    height:200px;
     background-size: contain;
     background-repeat:no-repeat;
     background-image: url("https://www.bathstudentrentals.com/wp-content/uploads/2018/02/arrow-down-light-blue2.png");
@@ -19,7 +19,21 @@
     z-index:2;
 }
 .firework{
-    height:70%;
-    width:70%;
-    margin-top:-8%;
+    height:10vw;
+    width:auto;
+    margin-top:30%;
+}
+.gifRow{
+    margin-top:-20%;
+}
+.gauntlet1{
+    height:20vw;
+    width:auto;
+}
+.gauntlet2{
+    height:20vw;
+    width:auto;
+}
+.universeSaved{
+    color:#ad9c01;
 }
