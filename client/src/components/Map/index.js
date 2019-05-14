@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 const mapStyles = {
   map: {
-    position: 'absolute',
+    // position: 'relative',
     width: '100%',
     height: '100%'
   }
@@ -104,7 +104,7 @@ export class CurrentLocation extends React.Component {
     const style = Object.assign({}, mapStyles.map);
 
     return (
-      <div>
+      <div style={{height: '300px', width: '100%'}}>
         <div style={style} ref="map">
           Loading map...
         </div>
