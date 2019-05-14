@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router} from 'react-router-dom';
+import { Route, Router, Redirect, Switch } from 'react-router-dom';
 import App from './App';
 import Home from './Home/Home';
 import Callback from './Callback/Callback';
@@ -26,22 +26,55 @@ export const makeMainRoutes = () => {
       <Router history={history}>
         <div>
           <NavigationBar auth={auth} history={history} />
-          {/* <Route path="/" render={(props) => <NavigationBar auth={auth} {...props} />} /> */}
-          <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
-          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
-          <Route path="/callback" render={(props) => {
-            handleAuthentication(props);
-            return <Callback {...props} /> 
-          }}/>
-          <Route exact path="/create" render={(props) => <Create auth={auth} {...props} />} />
-          <Route exact path="/play/:id" render={(props) => <Play auth={auth} {...props} />} />
-          <Route exact path="/choosegame" render={(props) => <ChooseGame auth={auth} {...props} />} />
+          <Switch>
+            <Route exact path="/" render={(props) => <App auth={auth} {...props} />} />
+            <Route path="/callback" render={(props) => {
+              handleAuthentication(props);
+              return <Callback {...props} /> 
+            }}/>
 
-          {/* temporary route to work on win page */}
-          <Route exact path="/win" render={(props) => <Win auth={auth} {...props} />} />
+            <Route exact path="/home" render={(props) => {
+              return (auth.isAuthenticated())
+                ? <Home auth={auth} history={props.history} />
+                : <Redirect to="/" />;
+              }}
+            /> 
+
+            <Route exact path="/create" render={(props) => {
+              return (auth.isAuthenticated())
+                ? <Create auth={auth} history={props.history} />
+                : <Redirect to="/" />;
+              }}
+            />
+
+            <Route exact path="/play/:id" render={(props) => {
+              console.log("here: ", props)
+              return (auth.isAuthenticated())
+                ? <Play auth={auth} history={props.history} match={props.match} />
+                : <Redirect to="/" />;
+              }}
+            />
+
+            <Route exact path="/choosegame" render={(props) => {
+              return (auth.isAuthenticated())
+                ? <ChooseGame auth={auth} history={props.history} />
+                : <Redirect to="/" />;
+              }}
+            />
+
+            {/* temporary route to work on win page */}
+            <Route exact path="/win" render={(props) => <Win auth={auth} {...props} />} />
+
+            <Route render={() =>
+              <Redirect to="/" />
+            }
+            />
+
+          </Switch>
+
 
         </div>
       </Router>
+      
   );
 }
-

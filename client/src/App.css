@@ -1,5 +1,5 @@
 body{
-  background-image: url(paper-bg.jpg)
+  background-color:#202020;
 }
 h1{
   font-family: 'Arvo', serif;
@@ -12,7 +12,10 @@ h1{
 .container { 
   text-align: center;
   padding: 0px 0px 70px 0px; 
-  background-color: #5F6C4D;
+  background-color: rgb(228, 228, 228);
+  border: solid;
+  border-width:5px;
+  border-color: rgb(146, 8, 8);
   border-radius:10px;
   margin-bottom: 40px;
 }

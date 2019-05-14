@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import API from "../../utils/API";
 import "./styles.css";
-
-import { List, ListItem } from "../../components/List";
-import { Col, Row, Container } from "../../components/Grid";
-import Moment from 'react-moment';  
-import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
 
 class Win extends Component {
   state = {
@@ -34,10 +27,13 @@ class Win extends Component {
         <title>You Win!</title>
         <div id="winContent">
           <header>
-            <h1>Scavenger</h1>
+            <div id="triangle-down">
+            <h1>ScAvengers</h1>
             <h2>You Win! </h2>
+            <img className="firework" src="https://i.gifer.com/VZvx.gif" alt="firework"/>
+            </div>
           </header>
-          <h3 class="gameCompleted"><i>"title of game"</i> completed!</h3>
+          <h3 className="gameCompleted"><i>"title of game"</i> completed!</h3>
         </div>
       </div>
     );

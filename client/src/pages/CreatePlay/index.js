@@ -32,12 +32,12 @@ const theme2 = createMuiTheme({
 class CreatePlay extends Component {
   render() {
     return (
-      <div className="container contentContainer">
+      <div className="contentContainer">
         <title>Create or Play</title>
         <header>
-          <h1 className="titleh1">Scavenger</h1>
+          <h1 className="titleh1">ScAvengers</h1>
         </header>
-        <p className="def">Welcome to Scavenger,</p>
+        <p className="def">Welcome to ScAvengers,</p>
         <p className="def">Would you like to create a Scavenger hunt of your own...</p>
         <p className="def"> or play one that's already been created? </p>
         <Link to="/create" className="createLink" style={{ textDecoration: 'none' }}>

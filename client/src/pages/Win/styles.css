@@ -2,18 +2,24 @@
     height:60vh;
 }
 .gameCompleted{
-    margin-top:10%;
+    margin-top:0%;
 }
 #triangle-down {
-    text-align: center;
-    width:50px;
-    height:50px;
+    margin:0 auto;
+    width:300px;
+    height:250px;
     background-size: contain;
     background-repeat:no-repeat;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/TriangleArrow-Down.svg/1182px-TriangleArrow-Down.svg.png")
+    background-image: url("https://www.bathstudentrentals.com/wp-content/uploads/2018/02/arrow-down-light-blue2.png");
+    z-index:1;
 
   }
 #winContent{
     position:relative;
     z-index:2;
+}
+.firework{
+    height:70%;
+    width:70%;
+    margin-top:-8%;
 }

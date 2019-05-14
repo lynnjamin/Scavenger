@@ -8,8 +8,6 @@ import Moment from 'react-moment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 
-
-
 class ChooseGame extends Component {
   state = {
     games: [],
@@ -59,7 +57,7 @@ class ChooseGame extends Component {
                                 </div>
                               </Link>
                               <div className="createdDiv">
-                                created on <Moment format="DD/MM/YYYY">{game.date}</Moment> by {game.nickname}
+                                created on <Moment format="MM/DD/YYYY">{game.date}</Moment> by {game.nickname}
                               </div>
                             </div>
                             <Button onClick={() => this.deleteGame(game._id)} variant="contained" color="secondary" className="chooseGameDelete">
