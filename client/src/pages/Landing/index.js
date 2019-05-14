@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from 'react-bootstrap';
+import logo from '../../assets/landingimage.png';
 import "./styles.css";
 
 class Landing extends Component {
@@ -72,7 +73,7 @@ class Landing extends Component {
             }
           
         </div>
-        <img src="../../images/scAvengersPic.png" alt="ScAvengers"/>
+        <img src={logo} alt="scAvengers" />
       </div>
     );
   }
