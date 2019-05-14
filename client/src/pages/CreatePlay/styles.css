@@ -1,6 +1,12 @@
 .createButton{
     float:right;
+    opacity:auto;
+    transition:0.5s ease;
 }
+.createButton:hover .createStone{
+    opacity:0.1;
+}
+
 .huntButton{
     float:left;
 }

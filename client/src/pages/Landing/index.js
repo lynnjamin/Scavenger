@@ -35,7 +35,6 @@ class Landing extends Component {
           <p>A build your own scavenger hunt app</p>
         </div>
         <div className="landingLogin">
-        {/* buttons made with react-bootstrap don't currently go to the center of the page */}
         {
               !isAuthenticated() && (
                   <Button
@@ -73,7 +72,7 @@ class Landing extends Component {
             }
           
         </div>
-        
+        <img src="../../images/scAvengersPic.png" alt="ScAvengers"/>
       </div>
     );
   }

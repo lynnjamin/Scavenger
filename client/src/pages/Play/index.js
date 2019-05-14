@@ -187,7 +187,7 @@ class Play extends Component {
                   {this.state.title}
                 </div>
                 <div className="playClue">
-                  <strong className="clueIndicator">Clue: </strong>{this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : ""}
+                  <i className="clueIndicator">Clue: </i>{this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : ""}
                 </div>
                 {
                   this.state.wrongGuess
