@@ -8,12 +8,11 @@ import history from './history';
 import Create from "./pages/Create";
 import Play from "./pages/Play";
 import ChooseGame from "./pages/ChooseGame";
-import Win from "./pages/Win";
-
 import NavigationBar from "./components/NavigationBar";
 
-const auth = new Auth();
 
+// These pages/components are protected routes, if not redirect them to home page
+const auth = new Auth();
 const handleAuthentication = ({location}) => {
   if (/access_token|id_token|error/.test(location.hash)) {
     auth.handleAuthentication();
@@ -22,7 +21,6 @@ const handleAuthentication = ({location}) => {
 
 export const makeMainRoutes = () => {
   return (
-    
       <Router history={history}>
         <div>
           <NavigationBar auth={auth} history={history} />
@@ -32,39 +30,31 @@ export const makeMainRoutes = () => {
               handleAuthentication(props);
               return <Callback {...props} /> 
             }}/>
-
             <Route exact path="/home" render={(props) => {
               return (auth.isAuthenticated())
                 ? <Home auth={auth} history={props.history} />
                 : <Redirect to="/" />;
               }}
             /> 
-
             <Route exact path="/create" render={(props) => {
               return (auth.isAuthenticated())
                 ? <Create auth={auth} history={props.history} />
                 : <Redirect to="/" />;
               }}
             />
-
             <Route exact path="/play/:id" render={(props) => {
-              console.log("here: ", props)
               return (auth.isAuthenticated())
                 ? <Play auth={auth} history={props.history} match={props.match} />
                 : <Redirect to="/" />;
               }}
             />
-
             <Route exact path="/choosegame" render={(props) => {
               return (auth.isAuthenticated())
                 ? <ChooseGame auth={auth} history={props.history} />
                 : <Redirect to="/" />;
               }}
             />
-
-            {/* temporary route to work on win page */}
-            <Route exact path="/win" render={(props) => <Win auth={auth} {...props} />} />
-
+          {/* Else (no match), redirect them to home page */}
             <Route render={() =>
               <Redirect to="/" />
             }

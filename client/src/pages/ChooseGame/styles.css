@@ -21,7 +21,11 @@ h3{
     font-weight: 600;
     font-size: 20px;
     font-family: 'Roboto Slab', serif;
-    color: #12300b;
+    color: #071304;
+    background-color:rgb(172, 172, 172);
+    border-radius: 20px;
+    padding:5px 10px;
+    margin-right:10px;
 }
 
 .createdDiv{

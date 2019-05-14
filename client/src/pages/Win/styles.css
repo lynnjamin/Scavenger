@@ -1,3 +1,6 @@
+h2 {
+    font-family: 'Roboto Slab', serif;
+}
 .winContainer{
     height:60vh;
 }
@@ -32,8 +35,11 @@
 }
 .gauntlet2{
     height:20vw;
-    width:auto;
+    width:0vh auto;
 }
 .universeSaved{
     color:#ad9c01;
+}
+.chooseAnother{
+   color:#8011ca;
 }

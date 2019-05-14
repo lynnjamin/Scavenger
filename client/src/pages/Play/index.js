@@ -6,8 +6,9 @@ import Button from '@material-ui/core/Button';
 import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import Icon from '@material-ui/core/Icon';
+import Win from '../Win';
 
-
+// CSS styling to override materialize
 const styles = {
   root: {
     backgroundColor: "white",
@@ -28,18 +29,18 @@ const styles = {
   }
 };
 
-const theme2 = createMuiTheme({
+const theme = createMuiTheme({
   palette: {
-    primary: { 500: '#7c0000' }
+    primary: { main: '#00897b' }
   },
   typography: {
     useNextVariants: true,
   },
 });
 
-const theme = createMuiTheme({
+const theme2 = createMuiTheme({
   palette: {
-    primary: { main: '#00897b' }
+    primary: { 500: '#7c0000' }
   },
   typography: {
     useNextVariants: true,
@@ -66,7 +67,6 @@ const theme4 = createMuiTheme({
 
 class Play extends Component {
   state = {
-    // game:{}
     cluecode: [],
     title: "",
     date: "",
@@ -78,20 +78,19 @@ class Play extends Component {
     currentLocation: {
       lat: 30.2672,
       lng: -97.7431
-    }
+    },
+    win: false,
+    wrongGuess: false
   };
 
   handleChange = (event) => {
     this.setState({ answer: event.target.value, wrongGuess: false });
-    console.log(this.state.answer);
   }
   // When this component mounts, grab the game with the _id of this.props.match.params.id
   // e.g. localhost:3000/game/599dcb67f0f16317844583fc
   componentDidMount() {
-    console.log("what is this?", this.props);
     API.getGame(this.props.match.params.id)
       .then(res => {
-        console.log(res.data);
         const { title, game } = res.data;
         this.setState({ title, cluecode: game })
         //this.setState({ game: res.data })
@@ -121,6 +120,7 @@ class Play extends Component {
       
     }
   }
+
     handleAnswer = (userLocation) => {
       //Set the latitude and longitude for comparison
       const lat1 = userLocation.currentLocation.lat;
@@ -156,41 +156,44 @@ class Play extends Component {
         alert('Not close enough.');
       }
     }
+
     handleSubmitCode = (event) => {
       event.preventDefault();
+      //checks to see if player's answers match with creator's answers
       if (this.state.answer.toLowerCase().trim() === this.state.cluecode[this.state.codesolved].code.text.toLowerCase().trim()) {
-        console.log("answer :", this.state.cluecode[this.state.codesolved].code)
-        console.log("something: ", this.state.codesolved);
         this.setState({codesolved: this.state.codesolved + 1, answer: "", wrongGuess: false});
       } else {
         this.setState({wrongGuess: true, answer: ""});
       } 
+      // condition to get to win page
+      if(this.state.codesolved + 1 >= this.state.cluecode.length){
+        this.setState({win: true});
+      }
     }
 
 
     render() {
       return (
-        <div>
+        //render win page or play page
+        this.state.win === true 
+        ? <Win title={this.state.title} /> 
+        : <div>
           <div className="container">
             <div className="contentContainer">
               <h1>Follow the Clue</h1>
-              <h1>Guess the Code!</h1>
 
               <div className="gameBox">
                 <div className="titleOfGame">
                   {this.state.title}
                 </div>
                 <div className="playClue">
-                  {this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : ""}
+                  <strong className="clueIndicator">Clue: </strong>{this.state.cluecode[this.state.codesolved] ? this.state.cluecode[this.state.codesolved].clue : ""}
                 </div>
-
                 {
                   this.state.wrongGuess
-                    ? <p>Wrong</p>
+                    ? <p>Guess again!!</p>
                     : null
-
                 }
-
                 <form onSubmit={this.handleSubmitCode}>
                   <MuiThemeProvider theme={theme2}>
                     <TextField
@@ -211,13 +214,13 @@ class Play extends Component {
                   <Icon className="newIcon">send</Icon>
                     </Button>
                   </MuiThemeProvider>
+
                   {/* ==========================I inserted the location button here================================== */}
                   <MuiThemeProvider theme={theme4}>
                     <Button onClick={this.handleSubmitLocation} variant="contained" color="primary" className={this.props.classes.locationButton}>
                       I'm here!
                     </Button>
                   </MuiThemeProvider>
-
                 </form>
               </div>
 
@@ -226,7 +229,7 @@ class Play extends Component {
                   <MuiThemeProvider theme={theme}>
                     <Button variant="contained" color="primary" className={this.props.classes.chooseStyleButton}>
                       Back to Choose Game
-              </Button>
+                    </Button>
                   </MuiThemeProvider>
                 </Link>
               </div>

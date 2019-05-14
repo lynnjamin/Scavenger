@@ -1,27 +1,8 @@
-import React, { Component } from "react";
-import API from "../../utils/API";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
-class Win extends Component {
-  state = {
-    games: [],
-    title: "",
-    date: "",
-    nickname: "",
-  }
-
-  componentDidMount() {
-    this.loadGames();
-  }
-  
-  loadGames = () => { 
-    API.getGames()
-      .then(res => this.setState({ games: res.data })
-      )
-      .catch(err => console.log(err));
-  }
-
-  render() {
+  const Win = (props) => {
     return (
       <div className="container contentContainer winContainer">
         <title>You Win!</title>
@@ -43,12 +24,13 @@ class Win extends Component {
               </div>
             </div>
           </header>
-          <h3 className="gameCompleted"><i>"title of game"</i> completed!</h3>
+          <h3 className="gameCompleted"><i>{props.title}</i> completed!</h3>
           <h4 className="universeSaved"> You Saved the Universe!</h4>
+          <Link to="/chooseGame" className="chooseAnother"><p>Do another scavenger hunt <i class="fas fa-arrow-circle-right"></i></p></Link>
         </div>
       </div>
-    );
-  }
+
+  );
 }
 
 export default Win;

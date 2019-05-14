@@ -21,9 +21,22 @@ h5{
     margin-top:10px;
     font-size: 24px;
     font-family: 'Roboto Slab', serif;
+    color:#1e1e24;
+    text-shadow: 1px 1px 1px rgb(218, 218, 218);
 }
 .playClue{
     font-size: 18px;
     font-family: 'Roboto Slab', serif;
     margin-top: 10px;
+}
+.clueIndicator{
+    text-shadow: 1px 1px 1px rgb(218, 218, 218);
+}
+
+@media only screen and (max-width: 436px) {
+
+.gameBox{
+    margin:0px;
+    }
+
 }

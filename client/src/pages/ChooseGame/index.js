@@ -42,7 +42,7 @@ class ChooseGame extends Component {
         <div className="container contentContainer">
             <h1>Hunt</h1>
           <div className="mainChooseGame">
-          <div className="chooseGameTitle">Choose a game by other players</div>
+          <div className="chooseGameTitle">Choose a game created by other players</div>
             <Container fluid>
               <Row>
                 <Col size="md-12">
