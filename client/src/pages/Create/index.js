@@ -1,4 +1,4 @@
-//import React from "react";
+import React from "react";
 import axios from 'axios';
 import history from '../../history';
 import Button from '@material-ui/core/Button';
@@ -64,11 +64,25 @@ class InputForm extends React.Component {
     this.state = {
       title: "",
       clue: [{ value: "" }],
-      code: [
-        { text: "", lat: "", lng: "" }]
+      code: [{ value: "" }],
+      clickLatLng: {},
+      useLatLng: false
     };
   }
- 
+
+  propFunction = (obj) => {
+    console.log(obj);
+    this.setState({ clickLatLng: obj });
+    //if you clicke the map it throws the useLatLng as true
+    this.setState({ useLatLng: true });
+    console.log("clickLatLng: " + this.state.clickLatLng.lat + " , " + this.state.clickLatLng.lng);
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    // const { title, clue, code } = this.state;
+  };
+
   // Title Handler
   handleTitleChange = e => {
     this.setState({ title: e.target.value });
@@ -95,9 +109,9 @@ class InputForm extends React.Component {
   handleAddClueandCode = () => {
     this.setState(
       {
-      clue: this.state.clue.concat([{ value: "" }]),
-      code: this.state.code.concat([{ text: "", lat: "", lng: "" }])
-    });
+        clue: this.state.clue.concat([{ value: "" }]),
+        code: this.state.code.concat([{ text: "", lat: "", lng: "" }])
+      });
   };
 
   // Delete input
@@ -107,115 +121,175 @@ class InputForm extends React.Component {
       code: this.state.code.filter((s, sidx) => idx !== sidx)
     });
   };
-  
+
   // GET and POST to database
   saveGame = e => {
     e.preventDefault();
     const title = this.state.title;
     const game = []
-    for(let i =0; i < this.state.clue.length; i++){
+
+    console.log("clue: " + this.state.clue);
+    console.log("code: " + this.state.code[0]);
+    console.log("code: " + this.state.code[1]);
+    for (let i = 0; i < this.state.clue.length; i++) {
+      // choose between code or coordinates
+      //check if the code is a coordinate object or code by checking the type
+      //if it is a string, then we push the clue and the code: (text: whatever)
+      if ((typeof this.state.code[i].value) === "string") {
+        let clue = this.state.clue[i].value;
+        let code = this.state.code[i].value;
+        console.log(clue + ", " + code);
+        game.push({
+          clue: clue,
+          code: { text: code }
+        });
+        // if it is not a string, then we push the lat  
+      } else {
+        let clue = this.state.clue[i].value;
+        let latitude = this.state.code[i].value.lat;
+        let longitude = this.state.code[i].value.lng;
+        console.log(latitude, longitude)
+        game.push({
+          clue: clue,
+          code: {
+            lat: latitude,
+            lng: longitude
+          }
+        });
+      }
+
+      axios.request({
+        method: 'get',
+        url: "/api/users/" + window.localStorage.sub
+      })
+        .then(function (response) {
+          const newGame = {
+            title: title,
+            game: game,
+            createdBy: window.localStorage.sub,
+            nickname: response.data[0].nickname
+          };
+          axios.request({
+            method: 'post',
+            url: "/api/games/",
+            data: newGame,
+          }).then((response) => {
+            console.log("here: ", response.config.data);
+            history.replace('/home');
+          }).catch((error) => {
+            console.log(error);
+          });
+        })
+    }
+    for (let i = 0; i < this.state.clue.length; i++) {
       let clue = this.state.clue[i].value;
       let code = this.state.code[i];
-      game.push({ clue: clue, code: code})
+      game.push({ clue: clue, code: code })
     }
-    // grabs data of current user ID
-    axios.request({ 
-      method: 'get',
-      url: "/api/users/" + window.localStorage.sub
-    })
-    .then(function (response) {
-      const newGame = {
-        title: title,
-        game: game,
-        createdBy: window.localStorage.sub,
-        nickname: response.data[0].nickname
-      };
-      axios.request({ 
-        method: 'post',
-        url: "/api/games/",
-        data: newGame,
-      }).then((response) => {
-        history.replace('/home');
-      }).catch((error) => {
-          console.log(error);
-      });
-    })
-  }
+  }  
+    //   // grabs data of current user ID
+    //   axios.request({ 
+    //     method: 'get',
+    //     url: "/api/users/" + window.localStorage.sub
+    //   })
+    //   .then(function (response) {
+    //     const newGame = {
+    //       title: title,
+    //       game: game,
+    //       createdBy: window.localStorage.sub,
+    //       nickname: response.data[0].nickname
+    //     };
+    //     axios.request({ 
+    //       method: 'post',
+    //       url: "/api/games/",
+    //       data: newGame,
+    //     }).then((response) => {
+    //       history.replace('/home');
+    //     }).catch((error) => {
+    //         console.log(error);
+    //     });
+    //   })
+    // }
 
-  render() {
-    return (
-    <div>
-      <div className="container">
-      <div className="createGame">
-        <h1>Create a Game</h1>
-      </div>
-        <div className="createContainer">
-        <div className="createTitle">Title</div>
+    render() {
+      return (
+        <div>
+          <div className="container">
+            <div className="createGame">
+              <h1>Create a Game</h1>
+            </div>
+            <div className="createContainer">
+              <div className="createTitle">Title</div>
 
-          <form onSubmit={this.saveGame} className="form">
-            <MuiThemeProvider theme={theme}>
-            <TextField
-              required
-              id="filled-required"
-              label="Required"
-              className={this.props.classes.root}
-              margin="normal"
-              variant="filled"
-              onChange={this.handleTitleChange}
-            />
-            </ MuiThemeProvider>
-          
-            <br/><br/>
-              <h5>Clue and Code</h5>
-              {this.state.clue.map((clue, idx) => (
-                <div key={idx} className="clueinput">
-                  <MuiThemeProvider theme={theme}>
-                    <TextField
-                      id="outlined-textarea"
-                      label="Enter clue here"
-                      multiline
-                      className={this.props.classes.root}
-                      margin="normal"
-                      variant="filled"
-                      placeholder={`Clue #${idx + 1}`}
-                      value={this.state.clue[idx].value}
-                      onChange={this.handleClueChange(idx)}
-                      required
-                    />
+              <form onSubmit={this.saveGame} className="form">
+                <MuiThemeProvider theme={theme}>
+                  <TextField
+                    required
+                    id="filled-required"
+                    label="Required"
+                    className={this.props.classes.root}
+                    margin="normal"
+                    variant="filled"
+                    onChange={this.handleTitleChange}
+                  />
+                </ MuiThemeProvider>
 
-                    <TextField
-                      id="outlined-textarea"
-                      label="Enter code here"
-                      multiline
-                      className={this.props.classes.root}
-                      margin="normal"
-                      variant="filled"
-                      placeholder={`Code #${idx + 1}`}
-                      value={this.state.code[idx].value}
-                      onChange={this.handleCodeChange(idx)}
-                      required
-                    />  
-                  </MuiThemeProvider>
+                <br /><br />
+                <h5>Clue and Code</h5>
+                {this.state.clue.map((clue, idx) => (
+                  <div key={idx} className="clueinput">
+                    <MuiThemeProvider theme={theme}>
+                      <TextField
+                        id="outlined-textarea"
+                        label="Enter clue here"
+                        multiline
+                        className={this.props.classes.root}
+                        margin="normal"
+                        variant="filled"
+                        placeholder={`Clue #${idx + 1}`}
+                        value={this.state.clue[idx].value}
+                        onChange={this.handleClueChange(idx)}
+                        required
+                      />
 
-                  <div className="googleMapCreate">
-                    <MapContainer />
+                      <TextField
+                        id="outlined-textarea"
+                        label="Enter code here"
+                        multiline
+                        className={this.props.classes.root}
+                        margin="normal"
+                        variant="filled"
+                        placeholder={`Code #${idx + 1}`}
+                        value={this.state.code[idx].value}
+                        onChange={this.handleCodeChange(idx)}
+                        required
+                      />
+                    </MuiThemeProvider>
+
+                    <div className="googleMapCreate">
+                      <MapContainer grabCoords={this.propFunction}>
+                        Map goes here
+                  </MapContainer>
+                    </div>
+
+
+
+                    <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
+                      <DeleteIcon />
+                    </IconButton>
                   </div>
-            
-                  <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
-                  <DeleteIcon />
-                  </IconButton>
-                </div>
-              ))}
+                ))}
+
 
                 <MuiThemeProvider theme={theme2}>
-                  <Fab 
-                    color="primary" 
-                    aria-label="Add" 
+                  <Fab
+                    color="primary"
+                    aria-label="Add"
                     className={this.props.classes.fabButton}
                     onClick={this.handleAddClueandCode}
                     size="small"
-                    >
-                  <AddIcon />
+                  >
+                    <AddIcon />
                   </Fab>
                 </MuiThemeProvider>
 
@@ -225,12 +299,14 @@ class InputForm extends React.Component {
                     <Icon className="newIcon">send</Icon>
                   </Button>
                 </MuiThemeProvider>
-          </form>
-        </div>
-      </div>
-    </div>
-    );
-  }
-}
 
-export default withStyles(styles)(InputForm);
+
+              </form>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  export default withStyles(styles)(InputForm);

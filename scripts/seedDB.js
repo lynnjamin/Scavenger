@@ -16,15 +16,12 @@ const gameSeed = [
       {
         clue: "Like Amazon, but free!",
         code: {
-          text: "Library",
-          lat:30.265877,
-          lng:-97.751780
+          text: "Library"
         }
       },
       {
         clue: "half river, half swimming pool",
         code: {
-          text: "Barton Springs",
           lat:30.264005, 
           lng:-97.771028
         }
