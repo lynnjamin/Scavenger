@@ -69,6 +69,13 @@ class InputForm extends React.Component {
     };
   }
  
+  propFunction = idx => obj => {
+    const updatedCodeArray = this.state.code;
+    updatedCodeArray[idx] = {... updatedCodeArray[idx], ...obj};
+    this.setState({ code: updatedCodeArray })
+  }
+
+
   // Title Handler
   handleTitleChange = e => {
     this.setState({ title: e.target.value });
@@ -118,6 +125,32 @@ class InputForm extends React.Component {
       let code = this.state.code[i];
       game.push({ clue: clue, code: code})
     }
+
+
+    // for (let i = 0; i < this.state.clue.length; i++) {
+
+    //   if ((typeof this.state.text[i].value) === "string") {
+    //     let clue = this.state.clue[i].value;
+    //     let text = this.state.text[i].value;
+    //     console.log(clue + ", " + text);
+    //     game.push({
+    //       clue: clue,
+    //       text: text,
+    //     });
+    //     // if it is not a string, then we push the lat  
+    //   } else {
+    //     let clue = this.state.clue[i].value;
+    //     let latitude = this.state.code[i].value.lat;
+    //     let longitude = this.state.code[i].value.lng;
+    //     console.log(latitude, longitude)
+    //     game.push({
+    //       clue: clue,
+    //       code: {
+    //         lat: latitude,
+    //         lng: longitude
+    //       }
+    //     });
+    //   }
     // grabs data of current user ID
     axios.request({ 
       method: 'get',
@@ -135,12 +168,14 @@ class InputForm extends React.Component {
         url: "/api/games/",
         data: newGame,
       }).then((response) => {
+        console.log("test data:", response.data)
         history.replace('/home');
       }).catch((error) => {
           console.log(error);
       });
     })
   }
+
 
   render() {
     return (
@@ -198,7 +233,7 @@ class InputForm extends React.Component {
                   </MuiThemeProvider>
 
                   <div className="googleMapCreate">
-                    <MapContainer />
+                    <MapContainer grabCoords={this.propFunction}/>
                   </div>
             
                   <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">

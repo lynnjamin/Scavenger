@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import Icon from '@material-ui/core/Icon';
-import history from '../../history'
 import Win from '../Win';
 
 // CSS styling to override materialize
