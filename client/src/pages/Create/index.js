@@ -212,9 +212,11 @@ class InputForm extends React.Component {
                     />  
                   </MuiThemeProvider>
 
+                <div className="googleMapCreate">
                   <MapContainer>
                     Map goes here
                   </MapContainer>
+                </div>
               
 
                   <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">

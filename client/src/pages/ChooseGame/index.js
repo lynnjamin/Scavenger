@@ -14,6 +14,7 @@ class ChooseGame extends Component {
     title: "",
     date: "",
     nickname: "",
+    currentUserId: window.localStorage.sub
   }
 
   // When this component mounts, grab all the games from the db 
@@ -60,10 +61,15 @@ class ChooseGame extends Component {
                                 created on <Moment format="DD/MM/YYYY">{game.date}</Moment> by {game.nickname}
                               </div>
                             </div>
-                            <Button onClick={() => this.deleteGame(game._id)} variant="contained" color="secondary" className="chooseGameDelete">
-                              Delete
-                              <DeleteIcon className="chooseGameDeleteIcon" />
-                            </Button>
+                            {
+                            this.state.currentUserId === game.createdBy
+                              ? <Button onClick={() => this.deleteGame(game._id)} variant="contained" color="secondary" className="chooseGameDelete">
+                                  Delete
+                                <DeleteIcon className="chooseGameDeleteIcon" />
+                              </Button>
+                              : null
+                            }
+                            
                           </ListItem>
                         ))}
                       </List>
