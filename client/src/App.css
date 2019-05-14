@@ -18,11 +18,9 @@ h1{
   border-color: rgb(146, 8, 8);
   border-radius:10px;
   margin-bottom: 40px;
-}
-header{
-  padding-top: 10px;
-}
+  margin-top: 40px;
 
+}
 .logout{
   float:right;
   color:#eeeeee;

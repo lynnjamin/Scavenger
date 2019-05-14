@@ -11,9 +11,10 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import "./styles.css";
 //setting up the maps imports
-import React, { Component } from "react";
+import React from "react";
 import MapContainer from '../../components/MapContainer';
 
+// CSS styling to override materialize
 const styles = {
   root: {
     backgroundColor: "white",
@@ -67,25 +68,11 @@ class InputForm extends React.Component {
         { text: "", lat: "", lng: "" }]
     };
   }
-
-  // componentDidMount(){
-  //   axios.get("/api/users/" + window.localStorage.sub)
-  //   .then(response => {
-  //     console.log(response)
-  //   })
-  // }
-
-
-  handleSubmit = e => {
-    e.preventDefault();
-    // const { title, clue, code } = this.state;
-  };
-
+ 
   // Title Handler
   handleTitleChange = e => {
     this.setState({ title: e.target.value });
   };
-
 
   // Change Handler
   handleClueChange = idx => e => {
@@ -96,26 +83,24 @@ class InputForm extends React.Component {
     this.setState({ clue: newClue });
   };
 
-
   handleCodeChange = idx => e => {
     const newCode = this.state.code.map((code, sidx) => {
       if (idx !== sidx) return code;
-      return { ...code, value: e.target.value };
+      return { ...code, text: e.target.value };
     });
     this.setState({ code: newCode });
   };
 
- 
-  // Add Handler
+  // Add inputs
   handleAddClueandCode = () => {
     this.setState(
       {
       clue: this.state.clue.concat([{ value: "" }]),
-      code: this.state.code.concat([{ value: "" }])
+      code: this.state.code.concat([{ text: "", lat: "", lng: "" }])
     });
   };
 
-  // Remove Handler
+  // Delete input
   handleRemoveClueAndCode = idx => () => {
     this.setState({
       clue: this.state.clue.filter((s, sidx) => idx !== sidx),
@@ -123,18 +108,17 @@ class InputForm extends React.Component {
     });
   };
   
-//////////////////////
-// POST to database //
-//////////////////////
+  // GET and POST to database
   saveGame = e => {
     e.preventDefault();
     const title = this.state.title;
     const game = []
     for(let i =0; i < this.state.clue.length; i++){
       let clue = this.state.clue[i].value;
-      let code = this.state.code[i].text;
+      let code = this.state.code[i];
       game.push({ clue: clue, code: code})
     }
+    // grabs data of current user ID
     axios.request({ 
       method: 'get',
       url: "/api/users/" + window.localStorage.sub
@@ -151,7 +135,6 @@ class InputForm extends React.Component {
         url: "/api/games/",
         data: newGame,
       }).then((response) => {
-        console.log("here: ", response.config.data);
         history.replace('/home');
       }).catch((error) => {
           console.log(error);
@@ -168,6 +151,7 @@ class InputForm extends React.Component {
       </div>
         <div className="createContainer">
         <div className="createTitle">Title</div>
+
           <form onSubmit={this.saveGame} className="form">
             <MuiThemeProvider theme={theme}>
             <TextField
@@ -179,7 +163,7 @@ class InputForm extends React.Component {
               variant="filled"
               onChange={this.handleTitleChange}
             />
-            </  MuiThemeProvider>
+            </ MuiThemeProvider>
           
             <br/><br/>
               <h5>Clue and Code</h5>
@@ -213,21 +197,17 @@ class InputForm extends React.Component {
                     />  
                   </MuiThemeProvider>
 
-                <div className="googleMapCreate">
-                  <MapContainer>
-                    Map goes here
-                  </MapContainer>
-                </div>
-              
-
+                  <div className="googleMapCreate">
+                    <MapContainer />
+                  </div>
+            
                   <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
                   <DeleteIcon />
                   </IconButton>
                 </div>
               ))}
 
-
-              <MuiThemeProvider theme={theme2}>
+                <MuiThemeProvider theme={theme2}>
                   <Fab 
                     color="primary" 
                     aria-label="Add" 
@@ -237,16 +217,14 @@ class InputForm extends React.Component {
                     >
                   <AddIcon />
                   </Fab>
-              </MuiThemeProvider>
+                </MuiThemeProvider>
 
-              <MuiThemeProvider theme={theme3}>
+                <MuiThemeProvider theme={theme3}>
                   <Button onClick={this.saveGame} variant="contained" color="primary" className={this.props.classes.submitButton}>
                     Submit
                     <Icon className="newIcon">send</Icon>
                   </Button>
-              </MuiThemeProvider>
-
-
+                </MuiThemeProvider>
           </form>
         </div>
       </div>
