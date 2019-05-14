@@ -21,7 +21,7 @@ class Home extends Component {
     return (
       <div>
         <div className="container">
-        
+        {/* if authenticated, send users to createPlay page */}
           {
             isAuthenticated() && (
                   <CreatePlay />
