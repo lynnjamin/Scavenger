@@ -28,11 +28,10 @@ class Landing extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div className="container landingContainer">
-        <header>
-          <h1 className="titleh1 landingTitle">ScAvengers</h1>
-        </header>
+      <div className="container landingContainer" src={logo}>
+        <img className="logoPic" src={logo} alt="scAvengers" />
         <div className="descriptionBox">
+          <br/>
           <p>A build your own scavenger hunt app</p>
         </div>
         <div className="landingLogin">
@@ -73,7 +72,7 @@ class Landing extends Component {
             }
           
         </div>
-        <img src={logo} alt="scAvengers" />
+         
       </div>
     );
   }
