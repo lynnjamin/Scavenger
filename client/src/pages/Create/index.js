@@ -148,13 +148,12 @@ class InputForm extends React.Component {
           createdBy: window.localStorage.sub,
           nickname: response.data[0].nickname
         };
-        console.log("label: ", newGame)
         axios.request({
           method: 'post',
           url: "/api/games/",
           data: newGame,
         }).then((response) => {
-          console.log("here: ", response.config.data);
+          console.log(response.config.data);
           history.replace('/home');
         }).catch((error) => {
           console.log(error);
