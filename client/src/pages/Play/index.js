@@ -80,7 +80,8 @@ class Play extends Component {
       lng: -97.7431
     },
     win: false,
-    wrongGuess: false
+    wrongGuess: false,
+    notCloseEnough: false
   };
 
   handleChange = (event) => {
@@ -128,6 +129,7 @@ class Play extends Component {
       const lat2 = this.state.cluecode[this.state.codesolved].code.lat;
       const lon2 = this.state.cluecode[this.state.codesolved].code.lng;
       console.log(lat1, lon1, lat2, lon2);
+      console.log("cluecode", this.state.cluecode)
       //what is the distance betweem the current location and the code
       if ((lat1 === lat2) && (lon1 === lon2)) {
         return 0;
@@ -151,19 +153,26 @@ class Play extends Component {
       // if the distance is small enough, then move on to the next clue (set the minimum distance to be 1/10th of a mile)
       if (dist < .5) {
         console.log("closer than .1 miles");
-        this.setState({ codesolved: this.state.codesolved + 1 });
+        this.setState({ codesolved: this.state.codesolved + 1, notCloseEnoug: false });
       } else {
-        alert('Not close enough.');
-      }
+        this.setState({notCloseEnough: true})
     }
+
+      // condition to get to win page
+      if(this.state.codesolved + 1 >= this.state.cluecode.length){
+        console.log("length of game", this.state.cluecode.length)
+        this.setState({win: true});
+      }
+  }
 
     handleSubmitCode = (event) => {
       event.preventDefault();
+      console.log("codesolved", this.state.codesolved)
       //checks to see if player's answers match with creator's answers
       if (this.state.answer.toLowerCase().trim() === this.state.cluecode[this.state.codesolved].code.text.toLowerCase().trim()) {
         this.setState({codesolved: this.state.codesolved + 1, answer: "", wrongGuess: false});
       } else {
-        this.setState({wrongGuess: true, answer: ""});
+        this.setState({wrongGuess: true, answer: "" });
       } 
       // condition to get to win page
       if(this.state.codesolved + 1 >= this.state.cluecode.length){
@@ -192,6 +201,11 @@ class Play extends Component {
                 {
                   this.state.wrongGuess
                     ? <p>Guess again!!</p>
+                    : null
+                }
+                {
+                  this.state.notCloseEnough
+                    ? <p>You're not close enough! Keep trying :)</p>
                     : null
                 }
                 <form onSubmit={this.handleSubmitCode}>
