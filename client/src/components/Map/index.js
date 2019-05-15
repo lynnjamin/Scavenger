@@ -47,7 +47,6 @@ export class CurrentLocation extends React.Component {
   }
 
   handleMapClick(latlng) {
-    console.log(latlng);
     this.props.grabCoords(latlng);
     }
 

@@ -12,6 +12,13 @@ import AddIcon from '@material-ui/icons/Add';
 import "./styles.css";
 //setting up the maps imports
 import MapContainer from '../../components/MapContainer';
+// setting tabs for choosing only code or location
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
+import Captain from '../../assets/captain_america.png';
+import Iron from '../../assets/iron_man.png';
+
+
 
 // CSS styling to override materialize
 const styles = {
@@ -57,6 +64,9 @@ const theme3 = createMuiTheme({
   },
 });
 
+
+
+
 class InputForm extends React.Component {
   constructor() {
     super();
@@ -67,7 +77,6 @@ class InputForm extends React.Component {
     };
   }
 
- 
   propFunction = idx => obj => {
     const updatedCodeArray = this.state.code;
     updatedCodeArray[idx] = {... updatedCodeArray[idx], ...obj};
@@ -123,7 +132,6 @@ class InputForm extends React.Component {
     for (let i = 0; i < this.state.clue.length; i++) {
       let clue = this.state.clue[i].value;
       let text = this.state.code[i];
-      console.log("check here: ", text)
       game.push({
         clue: clue,
         code: text
@@ -145,7 +153,7 @@ class InputForm extends React.Component {
           url: "/api/games/",
           data: newGame,
         }).then((response) => {
-          console.log("here: ", response.config.data);
+          console.log(response.config.data);
           history.replace('/home');
         }).catch((error) => {
           console.log(error);
@@ -153,47 +161,17 @@ class InputForm extends React.Component {
       })
   }
  
-    // console.log("clue: " + this.state.clue);
-    // console.log("code: " + this.state.code[0]);
-    // console.log("code: " + this.state.code[1]);
-    // for (let i = 0; i < this.state.clue.length; i++) {
-      // choose between code or coordinates
-      //check if the code is a coordinate object or code by checking the type
-      //if it is a string, then we push the clue and the code: (text: whatever)
-      // if ((typeof this.state.code[i].value) === "string") {
-      //   let clue = this.state.clue[i].value;
-      //   let code = this.state.code[i].value;
-      //   console.log(clue + ", " + code);
-      //   game.push({
-      //     clue: clue,
-      //     code: { text: code }
-      //   });
-        // if it is not a string, then we push the lat  
-      // } else {
-      //   let clue = this.state.clue[i].value;
-      //   let latitude = this.state.code[i].value.lat;
-      //   let longitude = this.state.code[i].value.lng;
-      //   console.log(latitude, longitude)
-      //   game.push({
-      //     clue: clue,
-      //     code: {
-      //       lat: latitude,
-      //       lng: longitude
-      //     }
-      //   });
-      // }
 
-     
-
-      render() {
-        return (
-          <div>
-            <div className="container">
-              <div className="createGame">
-                <h1>Create a Game</h1>
-              </div>
+    render() {
+      return (
+        <div>
+          <div className="container">
+            <div className="createGame">
+              <h1>Create a Game</h1>
+            </div>
               <div className="createContainer">
                 <div className="createTitle">Title</div>
+
                 <form onSubmit={this.saveGame} className="form">
                   <MuiThemeProvider theme={theme}>
                     <TextField
@@ -208,9 +186,10 @@ class InputForm extends React.Component {
                   </  MuiThemeProvider>
       
                   <br /><br />
-                  <h5>Clue and Code</h5>
-                  {this.state.clue.map((clue, idx) => (
-                    <div key={idx} className="clueinput">
+
+                <h5>Clue and Code</h5>
+                {this.state.clue.map((clue, idx) => (
+                <div key={idx} className="clueinput">
                       <MuiThemeProvider theme={theme}>
                         <TextField
                           id="outlined-textarea"
@@ -224,8 +203,25 @@ class InputForm extends React.Component {
                           onChange={this.handleClueChange(idx)}
                           required
                         />
+                        </MuiThemeProvider>
+
+                        <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
+                        <DeleteIcon />
+                      </IconButton>
       
-                        <TextField
+                <Tabs>
+                  <TabList>
+                    <Tab className="codeTab" disabled={this.state.code[idx].lat}>
+                      <img src={Captain} alt="Captain America" height="40" width="40" />    Enter the Code
+                    </Tab>
+                    <Tab className="locationTab" disabled={this.state.code[idx].text}>
+                      <img src={Iron} alt="Iron Man" height="40" width="40" />    Choose a Location
+                    </Tab>
+                  </TabList>
+
+                <TabPanel>
+                <MuiThemeProvider theme={theme}>
+                <TextField
                           id="outlined-textarea"
                           label="Enter code here"
                           multiline
@@ -233,26 +229,25 @@ class InputForm extends React.Component {
                           margin="normal"
                           variant="filled"
                           placeholder={`Code #${idx + 1}`}
-                          value={this.state.code[idx].value}
+                          value={this.state.code[idx].text}
                           onChange={this.handleCodeChange(idx)}
                           required
                         />
                       </MuiThemeProvider>
-      
+                </TabPanel>
+
+                <TabPanel>
                       <div className="googleMapCreate">
                         <MapContainer grabCoords={this.propFunction(idx)}>
                           Map goes here
                         </MapContainer>
                       </div>
-      
-      
-      
-                      <IconButton onClick={this.handleRemoveClueAndCode(idx)} className="trashcanButton" aria-label="Delete">
-                        <DeleteIcon />
-                      </IconButton>
-                    </div>
-                  ))}
-      
+                </TabPanel>
+                </Tabs>
+                </div>
+                
+                ))}
+              
       
                   <MuiThemeProvider theme={theme2}>
                     <Fab
@@ -273,13 +268,13 @@ class InputForm extends React.Component {
                     </Button>
                   </MuiThemeProvider>
       
-      
+                  
                 </form>
-              </div>
             </div>
           </div>
-        );
+        </div>
+      );
+    }
       }
-        }
 
 export default withStyles(styles)(InputForm);

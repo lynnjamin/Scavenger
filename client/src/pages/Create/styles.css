@@ -13,6 +13,7 @@ h1{
     margin-top: 10px;
 }
 
+
 .contentContainer{
     height:auto;
     padding: 30px;
@@ -75,6 +76,36 @@ h5{
     padding: 0 25px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.codeTab {
+    font-family: 'Roboto Slab', serif;
+    display: inline-block;
+    border: 1px solid transparent;
+    border-bottom: none;
+    position: relative;
+    list-style: none;
+    padding: 8px 20px;
+    cursor: pointer;
+
+}
+
+.locationTab{    
+    font-family: 'Roboto Slab', serif;
+    display: inline-block;
+    border: 1px solid transparent;
+    border-bottom: none;
+    position: relative;
+    list-style: none;
+    padding: 8px 20px;
+    cursor: pointer;
+   
+}
+
+.wrongIndicator {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    margin-top: 10px;
 }
 
 @media only screen and (max-width: 768px) {

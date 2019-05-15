@@ -24,7 +24,7 @@ module.exports = {
   update: function(req, res) {
     db.User
       .findOneAndUpdate({ sub: req.body.sub }, req.body, {upsert: true})
-      .then(dbModel => console.log("model: ", dbModel) || res.json(dbModel))
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {

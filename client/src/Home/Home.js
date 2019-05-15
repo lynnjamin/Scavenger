@@ -4,12 +4,7 @@ import "./styles.css";
 
 class Home extends Component {
 
-  // componentDidMount(){
-  //   axios.get("/api/users/" + window.localStorage.sub)
-  //   .then(response => {
-  //     console.log("here 100: ", response)
-  //   })
-  // }
+ 
 
   login() {
     this.props.auth.login();

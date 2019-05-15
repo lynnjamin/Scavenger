@@ -80,7 +80,8 @@ class Play extends Component {
       lng: -97.7431
     },
     win: false,
-    wrongGuess: false
+    wrongGuess: false,
+    notCloseEnough: false
   };
 
   handleChange = (event) => {
@@ -127,7 +128,7 @@ class Play extends Component {
       const lon1 = userLocation.currentLocation.lng;
       const lat2 = this.state.cluecode[this.state.codesolved].code.lat;
       const lon2 = this.state.cluecode[this.state.codesolved].code.lng;
-      console.log(lat1, lon1, lat2, lon2);
+      
       //what is the distance betweem the current location and the code
       if ((lat1 === lat2) && (lon1 === lon2)) {
         return 0;
@@ -144,32 +145,29 @@ class Play extends Component {
         dist = Math.acos(dist);
         dist = dist * 180 / Math.PI;
         dist = dist * 60 * 1.1515;
-        console.log("distance:" + dist);
       }
 
 
-      // if the distance is small enough, then move on to the next clue (set the minimum distance to be 1/10th of a mile)
       if (dist < .5) {
-        console.log("closer than .1 miles");
-        this.setState({ codesolved: this.state.codesolved + 1 });
+        this.state.codesolved + 1 > this.state.cluecode.length - 1
+        ? this.setState({win: true})
+        : this.setState({ codesolved: this.state.codesolved + 1 });
       } else {
-        alert('Not close enough.');
+        this.setState({notCloseEnough: true, answer: ""});
       }
-    }
+  }
 
-    handleSubmitCode = (event) => {
-      event.preventDefault();
-      //checks to see if player's answers match with creator's answers
-      if (this.state.answer.toLowerCase().trim() === this.state.cluecode[this.state.codesolved].code.text.toLowerCase().trim()) {
-        this.setState({codesolved: this.state.codesolved + 1, answer: "", wrongGuess: false});
-      } else {
-        this.setState({wrongGuess: true, answer: ""});
-      } 
-      // condition to get to win page
-      if(this.state.codesolved + 1 >= this.state.cluecode.length){
-        this.setState({win: true});
-      }
+  handleSubmitCode = (event) => {
+    event.preventDefault();
+    //checks to see if player's answers match with creator's answers
+    if (this.state.answer.toLowerCase().trim() === this.state.cluecode[this.state.codesolved].code.text.toLowerCase().trim()) {
+      this.state.codesolved + 1 > this.state.cluecode.length - 1
+      ? this.setState({win: true})
+      : this.setState({codesolved: this.state.codesolved + 1, answer: "", wrongGuess: false});
+    } else {
+      this.setState({wrongGuess: true, answer: ""});
     }
+  }
 
 
     render() {
@@ -191,11 +189,21 @@ class Play extends Component {
                 </div>
                 {
                   this.state.wrongGuess
-                    ? <p>Guess again!!</p>
+                    ? <div className="wrongIndicator">
+                    Guess again!!</div>
                     : null
                 }
+                {
+                  this.state.notCloseEnough
+                    ? <div className="wrongIndicator">You're not close enough! Keep trying :)</div>
+                    : null
+                }
+                
+
                 <form onSubmit={this.handleSubmitCode}>
-                  <MuiThemeProvider theme={theme2}>
+                { this.state.cluecode.length && this.state.cluecode[this.state.codesolved].code.text            
+                  ? <div>
+                    <MuiThemeProvider theme={theme2}>
                     <TextField
                       id="filled-with-placeholder"
                       label="Enter the code"
@@ -208,19 +216,26 @@ class Play extends Component {
                     />
                   </MuiThemeProvider>
 
+
+                 
                   <MuiThemeProvider theme={theme3}>
                   <Button onClick={this.handleSubmitCode} variant="contained" color="primary" className={this.props.classes.submitButton}>
                       Submit
                   <Icon className="newIcon">send</Icon>
                     </Button>
                   </MuiThemeProvider>
-
-                  {/* ==========================I inserted the location button here================================== */}
+                  </div>
+                  :
+                  <div className="locationInstructions">
                   <MuiThemeProvider theme={theme4}>
+                    Click if you are at the location
+                    <br />
                     <Button onClick={this.handleSubmitLocation} variant="contained" color="primary" className={this.props.classes.locationButton}>
                       I'm here!
                     </Button>
                   </MuiThemeProvider>
+                  </div>
+                  }
                 </form>
               </div>
 
