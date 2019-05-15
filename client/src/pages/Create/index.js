@@ -15,6 +15,10 @@ import MapContainer from '../../components/MapContainer';
 // setting tabs for choosing only code or location
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
+import Captain from '../../assets/captain_america.png';
+import Iron from '../../assets/iron_man.png';
+
+
 
 // CSS styling to override materialize
 const styles = {
@@ -128,7 +132,6 @@ class InputForm extends React.Component {
     for (let i = 0; i < this.state.clue.length; i++) {
       let clue = this.state.clue[i].value;
       let text = this.state.code[i];
-      console.log("check here: ", text)
       game.push({
         clue: clue,
         code: text
@@ -145,6 +148,7 @@ class InputForm extends React.Component {
           createdBy: window.localStorage.sub,
           nickname: response.data[0].nickname
         };
+        console.log("label: ", newGame)
         axios.request({
           method: 'post',
           url: "/api/games/",
@@ -208,8 +212,12 @@ class InputForm extends React.Component {
       
                 <Tabs>
                   <TabList>
-                    <Tab>Enter the Code</Tab>
-                    <Tab>Choose a Location</Tab>
+                    <Tab className="codeTab" disabled={this.state.code[idx].lat}>
+                      <img src={Captain} alt="Captain America" height="40" width="40" />    Enter the Code
+                    </Tab>
+                    <Tab className="locationTab" disabled={this.state.code[idx].text}>
+                      <img src={Iron} alt="Iron Man" height="40" width="40" />    Choose a Location
+                    </Tab>
                   </TabList>
 
                 <TabPanel>
@@ -222,7 +230,7 @@ class InputForm extends React.Component {
                           margin="normal"
                           variant="filled"
                           placeholder={`Code #${idx + 1}`}
-                          value={this.state.code[idx].value}
+                          value={this.state.code[idx].text}
                           onChange={this.handleCodeChange(idx)}
                           required
                         />

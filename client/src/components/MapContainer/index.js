@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { GoogleApiWrapper} from 'google-maps-react';
-
 import CurrentLocation from '../../components/Map';
 
 export class MapContainer extends Component {
@@ -27,6 +26,7 @@ export class MapContainer extends Component {
   };
 
   render() {
+    console.log("activeee: ", this.props.activeMarker, "selectedddd: ", this.props.selectedPlace)
     return (
       <CurrentLocation grabCoords={this.props.grabCoords} centerAroundCurrentLocation google={this.props.google}>
 

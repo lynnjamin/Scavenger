@@ -26,7 +26,7 @@ import "./styles.css";
           </header>
           <h3 className="gameCompleted"><i>{props.title}</i> completed!</h3>
           <h4 className="universeSaved"> You Saved the Universe!</h4>
-          <Link to="/chooseGame" className="chooseAnother"><p>Do another scavenger hunt <i class="fas fa-arrow-circle-right"></i></p></Link>
+          <Link to="/chooseGame" className="chooseAnother"><p>Do another scavenger hunt <i className="fas fa-arrow-circle-right"></i></p></Link>
         </div>
       </div>
 
