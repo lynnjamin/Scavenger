@@ -3,13 +3,21 @@
     padding:10%;
 }
 .landingContainer{
-    height:60vh;
-    padding:10%;
+
     margin-top:5%;
+    /* background-image: url('../../assets/landingimage.png');
+    background-repeat: no-repeat;
+    background-position: center; */
 }
 .landingHomeButton{
     margin-right:5px;
 }
 .landingTitle{
     padding-top:10%;;
+}
+.logoPic{
+    height:100%;
+    width:100%;
+    border-bottom: solid 5px;
+    border-color: rgb(48, 48, 48);
 }
